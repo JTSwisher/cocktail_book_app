@@ -5,5 +5,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :new, :create]
 
-  resources :sessions, only: [:new, :create, :destroy]
+ 
+  get '/login', to: 'sessions#new'
+  post '/sessions', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  get '/auth/github/callback', to: 'sessions#create'
+
+
 end

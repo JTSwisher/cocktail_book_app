@@ -24,14 +24,14 @@
                 <a class="nav-link" <%= link_to "#{current_user.name}'s Profile", user_path(current_user)%></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" <%= link_to "Log Out", session_path(current_user), method: :delete %></a>
+                <a class="nav-link" <%= link_to "Log Out", logout_path(current_user), method: :delete %></a>
               </li>
             <%else%>
               <li class="nav-item">
                 <a class="nav-link" href="<%= new_user_path %>">Sign Up</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<%= new_session_path %>">Login</a>
+                <a class="nav-link" href="<%= login_path %>">Login</a>
             </li>
           <%end%>
         </ul>
