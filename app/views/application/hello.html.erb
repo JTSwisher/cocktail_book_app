@@ -1,4 +1,9 @@
+<h1>Welcome to Cocktail Book</h1><br>
+<h3>Find your new favorite drink recipe. Dont forget to add a recipe for the community!</h3>
 
-<div class="alert alert-primary" role="alert">
-  <h1>Hello</h1>
-</div>
+<% if current_user%>
+
+<%else%>
+    <a class="btn btn-primary" id ="success-btn" href="<%= new_user_path %>" role="button">Sign Up</a> 
+    <a class="btn btn-primary" id ="success-btn" href="<%= login_path %>" role="button">Log In</a> 
+<%end%>
