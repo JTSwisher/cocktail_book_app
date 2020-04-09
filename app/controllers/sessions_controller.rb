@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
             session[:user_id] = @user.id 
             redirect_to user_path(@user)
         else 
-            render :new, flash[:alert] = "Your login credentials were incorrect. Please try again."
+            flash[:alert] = "Your login credentials were incorrect. Please try again."
+            redirect_to new_session_path
         end 
     end
 
