@@ -23,11 +23,16 @@
             <a class="nav-link" href="<%= new_user_path %>">Sign Up</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="new_session_path">Login</a>
+            <a class="nav-link" href="<%= new_session_path %>">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
+          <%if current_user %>
+            <li class="nav-item">
+              <a class="nav-link" <%= link_to "Log Out", session_path(current_user), method: :delete %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" <%= link_to "#{current_user.name} Profile", user_path(current_user)%></a>
+            </li>
+            <%end%>
         </ul>
       </div>
     </nav>

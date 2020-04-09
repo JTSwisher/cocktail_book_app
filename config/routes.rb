@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   root "application#hello"
 
   resources :users, only: [:show, :new, :create]
+
+  resources :sessions, only: [:new, :create, :destroy]
 end
