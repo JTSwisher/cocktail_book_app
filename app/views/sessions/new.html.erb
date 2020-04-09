@@ -1,15 +1,14 @@
- <% if flash[:alert] %>
-    <div class="notice"><%= flash[:alert] %></div>
-  <% end %>
+ <div class="container-lg">
+    <% if flash[:alert] %>
+        <div class="notice"><%= flash[:alert] %></div>
+    <% end %>
 
-<%= form_for @user, url: {action: "create", controller: "sessions"} do |f|%>
-    <%=f.label :email, "Email:"%>
-    <%= f.text_field :email%> <br>
-    <%=f.label :password, "Password:"%>
-    <%=f.password_field :password%><br>
-    <%=f.label :password_confirmation, "Confirm Password"%>
-    <%=f.password_field :password_confirmation%><br>
-    <%=f.submit "Login"%>
-<%end%>
+    <%= bootstrap_form_for @user, url: {action: "create", controller: "sessions"} do |f|%>
+        <%= f.text_field :email%> <br>
+        <%=f.password_field :password%><br>
+        <%=f.password_field :password_confirmation%><br>
+        <%=f.submit "Login"%>
+    <%end%>
 
-<%= link_to "Login via GitHub", "/auth/github"%>
+    <%= link_to "Login via GitHub", "/auth/github"%>
+</div>
