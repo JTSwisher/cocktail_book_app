@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
     width: 100%;
-    background: linear-gradient(45deg, #23a6d5, #23d5ab ) no-repeat center center fixed;
+    background: linear-gradient(45deg, #A8E6CE, #DCEDC2 ) no-repeat center center fixed;
     animation: gradient 20s ease infinite;
     background-repeat:no-repeat;
     font-family: 'Montserrat', sans-serif;
