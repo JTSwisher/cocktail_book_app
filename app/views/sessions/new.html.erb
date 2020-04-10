@@ -1,9 +1,9 @@
  <div class="container-lg">
-    <% if flash[:alert] %>
-        <div class="notice"><%= flash[:alert] %></div>
-    <% end %>
 
     <%= bootstrap_form_for @user, url: {action: "create", controller: "sessions"} do |f|%>
+      <% if flash[:alert] %>
+        <div class="notice"><%= flash[:alert] %></div>
+      <% end %>
         <%= f.text_field :email%> <br>
         <%=f.password_field :password%><br>
         <%=f.password_field :password_confirmation%><br>

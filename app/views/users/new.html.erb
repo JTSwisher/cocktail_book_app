@@ -1,13 +1,10 @@
 <div class="container-lg">
-   <ul>
+<%= bootstrap_form_for @user do |f|%>
+    <ul>
         <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
         <% end %>
     </ul>
-
-
-
-<%= bootstrap_form_for @user do |f|%>
     <%= f.text_field :email%> <br>
     <%= f.text_field :name%><br>
     <%=f.password_field :password%><br>

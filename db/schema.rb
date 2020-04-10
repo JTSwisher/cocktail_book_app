@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_212310) do
+ActiveRecord::Schema.define(version: 2020_04_10_190734) do
+
+  create_table "cocktail_ingredients", force: :cascade do |t|
+    t.integer "cocktail_id"
+    t.integer "ingredient_id"
+    t.string "quantity"
+  end
+
+  create_table "cocktails", force: :cascade do |t|
+    t.string "name"
+    t.string "instructions"
+    t.integer "user_id"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"

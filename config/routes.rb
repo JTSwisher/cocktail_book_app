@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root "application#hello"
 
   resources :users, only: [:show, :new, :create]
-
+  resources :cocktails, only: [:show, :new, :create]
  
   get '/login', to: 'sessions#new'
   post '/sessions', to: 'sessions#create'
