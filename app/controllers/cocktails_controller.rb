@@ -6,8 +6,10 @@ class CocktailsController < ApplicationController
     end 
 
     def create
-        raise cocktail_params.inspect
-        @user = User.find(id: session[:user_id])
+        @user = User.find_by(id: session[:user_id])
+        @cocktail = Cocktail.create(cocktail_params)
+        @user.cocktails.build(@cocktail)
+        redirect_to user_cocktail_path(@user, @cocktail)
     end 
 
 private 
