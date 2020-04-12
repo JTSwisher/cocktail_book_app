@@ -9,6 +9,13 @@ class CocktailsController < ApplicationController
         raise cocktail_params.inspect
     end 
 
+private 
+
+    def cocktail_params
+            params.require(:cocktail).permit(:name, :instructions,
+            :cocktail_ingredients_attributes => [:quantity,
+            :ingredient_attributes => [:name]])
+    end 
 
 
 end

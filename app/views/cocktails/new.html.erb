@@ -1,1 +1,22 @@
 
+<h1>Create a New Cocktail</h1>
+
+<%= bootstrap_form_for @cocktail do |f|%>
+    <%= f.text_field :name, label: "Cocktail Name"%>
+    <%= f.text_field :instructions, label: "Mixing Directions"%>
+
+    <h3> Ingredients:</h3>
+   
+        
+            <%= f.fields_for :cocktail_ingredients do |ci|%>
+                <%= ci.text_field :quantity%>
+        
+        
+                    <%= ci.fields_for :ingredient do |i|%>
+                        <%= i.text_field :name %>
+                    <%end%>
+            <%end%>
+
+    <%= f.submit "Create Cocktail"%>
+
+<%end%>
