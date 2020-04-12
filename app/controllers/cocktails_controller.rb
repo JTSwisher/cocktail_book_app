@@ -7,6 +7,7 @@ class CocktailsController < ApplicationController
 
     def create
         raise cocktail_params.inspect
+        @user = User.find(id: session[:user_id])
     end 
 
 private 
