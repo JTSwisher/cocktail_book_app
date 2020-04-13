@@ -1,23 +1,32 @@
 class CocktailsController < ApplicationController
+    before_action :current_user
 
     def new
         @cocktail = Cocktail.new
-        5.times { @cocktail.cocktail_ingredients.build.build_ingredient}
+        2.times { @cocktail.cocktail_ingredients.build.build_ingredient}
     end 
 
     def create
-        @user = User.find_by(id: session[:user_id])
-        @cocktail = Cocktail.create(cocktail_params)
-        @user.cocktails.build(@cocktail)
+        @user = current_user
+        @cocktail = @user.cocktails.build(cocktail_params)
+       if @cocktail.save 
         redirect_to user_cocktail_path(@user, @cocktail)
+       else 
+        render 'new'
+       end 
+    end 
+
+    def show
+        @user = current_user
+        @cocktail = Cocktail.find_by(id: params[:id])
     end 
 
 private 
 
     def cocktail_params
             params.require(:cocktail).permit(:name, :instructions,
-            :cocktail_ingredients_attributes => [:quantity,
-            :ingredient_attributes => [:name]])
+            cocktail_ingredients_attributes: [:quantity,
+            ingredient_attributes: [:name]])
     end 
 
 

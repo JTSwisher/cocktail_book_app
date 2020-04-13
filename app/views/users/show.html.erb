@@ -1,4 +1,9 @@
 <%= @user.name %>
 <%= @user.email %>
 
+<h2>My Cocktails:</h2>
+<% @user.cocktails.each do |c|%>
+<%= link_to c.name, user_cocktail_path(@user, c)%><br>
+<%end%>
+
 <h3> <%= link_to "New Cocktail", new_user_cocktail_path(@user) %> </h3>

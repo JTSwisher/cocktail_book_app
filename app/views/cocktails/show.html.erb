@@ -1,1 +1,15 @@
-<%= @user.cocktail.name %>
+<%= @cocktail.name %><br>
+Created By: <%= @user.name %><br>
+Directions: <%= @cocktail.instructions %>
+
+<table>
+    <tr>
+        <th>Quantity</th>
+        <th>Ingredient</th>
+    <tr>
+    <% @cocktail.cocktail_ingredients.each do |ci| %>
+        <td><%= ci.quantity %></td> 
+        <td><%= ci.ingredient.name %></td>
+    </tr>
+    <% end %>
+</table>

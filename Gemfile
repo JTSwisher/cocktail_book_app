@@ -26,6 +26,9 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'dotenv-rails'
 
+
+gem 'pry-rails', :group => :development
+
 gem "bootstrap_form", "~> 4.0"
 
 # Use Active Storage variant

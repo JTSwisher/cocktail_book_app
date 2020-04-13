@@ -1,7 +1,10 @@
 
 <h1>Create a New Cocktail</h1>
 
-<%= bootstrap_form_for @cocktail do |f|%>
+<%= bootstrap_form_for @cocktail, url: user_cocktails_path(current_user), method: :post do |f|%>
+
+
+
     <%= f.text_field :name, label: "Cocktail Name"%>
     <%= f.text_field :instructions, label: "Mixing Directions"%>
 
