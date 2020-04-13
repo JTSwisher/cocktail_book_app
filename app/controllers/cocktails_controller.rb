@@ -1,5 +1,5 @@
 class CocktailsController < ApplicationController
-    before_action :current_user
+    before_action :current_user, only: [:index, :create]
 
     def index
         if params[:user_id]
@@ -26,7 +26,6 @@ class CocktailsController < ApplicationController
     end 
 
     def show
-        @user = current_user
         @cocktail = Cocktail.find_by(id: params[:id])
     end 
 

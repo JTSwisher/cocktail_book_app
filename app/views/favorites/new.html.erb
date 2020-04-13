@@ -1,3 +1,5 @@
+
+
 <%= @cocktail.name %><br>
 Created By: <%= @cocktail.user.name %><br>
 Directions: <%= @cocktail.instructions %>
@@ -14,9 +16,10 @@ Directions: <%= @cocktail.instructions %>
     <% end %>
 </table>
 
-<% if @cocktail.user_id == current_user.id %>
-    <%= link_to "Edit Cocktail", edit_user_cocktail_path(current_user.id, @cocktail)%>
-    <%= link_to "Delete Cocktail", edit_user_cocktail_path(current_user.id, @cocktail)%>
-<% else %>
-    <%= link_to "Save to Favorites", new_user_favorite_path(current_user.id, @cocktail)%>
-<% end %>
+<%= bootstrap_form_for @favorite, url: user_favorites_path(current_user), method: :post do |f|%>
+<%= f.hidden_field :user_id, value:  current_user.id  %>
+<%= f.hidden_field :cocktail_id, value:  @cocktail.id  %>
+<%=f.select :rating, [1,2,3,3,4,5,6,7,8,9,10 ]%>
+<%=f.text_field :comments%>
+<%=f.submit "Save"%>
+<%end%>

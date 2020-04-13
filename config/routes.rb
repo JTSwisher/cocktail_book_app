@@ -11,13 +11,16 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/auth/github/callback', to: 'sessions#create'
 
+  
+
 
   resources :users do 
     resources :cocktails, only: [:show, :new, :create, :index, :edit, :update, :destroy]
   end 
 
   resources :users do 
-    resources :favorites, only: [:show, :new, :create, :index, :edit, :update, :destroy]
+    resources :favorites, only: [:show, :create, :index, :edit, :update, :destroy]
   end 
 
+  get 'users/:user_id/favorites/:id', to: 'favorites#new', as: 'new_user_favorite'
 end
