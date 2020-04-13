@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
 
   resources :users do 
-    resources :cocktails, only: [:show, :new, :create]
+    resources :cocktails, only: [:show, :new, :create, :index]
   end 
 
 end

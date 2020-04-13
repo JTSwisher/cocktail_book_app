@@ -1,7 +1,8 @@
 <%= @user.name %>
 <%= @user.email %>
 
-<h2>My Cocktails:</h2>
+<h2><%= link_to "My Cocktail Recipes:", user_cocktails_path(@user) %></h2>
+<h2>My Favorited Recipes:</h2>
 <% @user.cocktails.each do |c|%>
 <%= link_to c.name, user_cocktail_path(@user, c)%><br>
 <%end%>

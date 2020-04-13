@@ -1,6 +1,15 @@
 class CocktailsController < ApplicationController
     before_action :current_user
 
+    def index
+        if params[:user_id]
+            @user = current_user
+            @cocktails = @user.cocktails.all
+        else
+            @cocktails = Cocktail.all 
+        end 
+    end 
+
     def new
         @cocktail = Cocktail.new
         2.times { @cocktail.cocktail_ingredients.build.build_ingredient}

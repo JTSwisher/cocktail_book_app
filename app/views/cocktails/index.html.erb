@@ -1,0 +1,3 @@
+<% @cocktails.each do |c|%>
+<%= link_to c.name, user_cocktail_path(@user, c)%><br>
+<%end%>
