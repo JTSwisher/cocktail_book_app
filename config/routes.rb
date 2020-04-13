@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root "application#hello"
 
   resources :users, only: [:show, :new, :create]
-  resources :cocktails, only: [:show, :new, :create]
+  resources :cocktails, only: [:show, :new, :create, :index]
  
   get '/login', to: 'sessions#new'
   post '/sessions', to: 'sessions#create'
@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 
 
   resources :users do 
-    resources :cocktails, only: [:show, :new, :create, :index]
+    resources :cocktails, only: [:show, :new, :create, :index, :edit, :update, :destroy]
+  end 
+
+  resources :users do 
+    resources :favorites, only: [:show, :new, :create, :index, :edit, :update, :destroy]
   end 
 
 end

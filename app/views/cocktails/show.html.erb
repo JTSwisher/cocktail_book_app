@@ -13,3 +13,10 @@ Directions: <%= @cocktail.instructions %>
     </tr>
     <% end %>
 </table>
+
+<% if @cocktail.user_id == current_user.id %>
+    <%= link_to "Edit Cocktail", edit_user_cocktail_path(@user, @cocktail)%>
+    <%= link_to "Delete Cocktail", edit_user_cocktail_path(@user, @cocktail)%>
+<% else %>
+    <%= link_to "Save to Favorites", new_user_favorite_path(@user)%>
+<% end %>

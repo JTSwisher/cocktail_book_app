@@ -1,10 +1,10 @@
-<%= @user.name %>
-<%= @user.email %>
+<h2>Account Information</h2>
+<h5>Name: <%= @user.name %></h5>
+<h5>Email: <%= @user.email %></h5><br>
 
-<h2><%= link_to "My Cocktail Recipes:", user_cocktails_path(@user) %></h2>
-<h2>My Favorited Recipes:</h2>
-<% @user.cocktails.each do |c|%>
-<%= link_to c.name, user_cocktail_path(@user, c)%><br>
-<%end%>
 
-<h3> <%= link_to "New Cocktail", new_user_cocktail_path(@user) %> </h3>
+
+<p><%= link_to "My Cocktail Recipes:", user_cocktails_path(@user) %></p>
+<p>My Favorited Recipes:</p>
+
+<p> <%= link_to "New Cocktail", new_user_cocktail_path(@user) %> </p>
