@@ -22,5 +22,5 @@ Rails.application.routes.draw do
     resources :favorites, only: [:show, :create, :index, :edit, :update, :destroy]
   end 
 
-  get 'users/:user_id/favorites/:id', to: 'favorites#new', as: 'new_user_favorite'
+  get 'users/:user_id/favorites', to: 'favorites#new', as: 'new_user_favorite'
 end

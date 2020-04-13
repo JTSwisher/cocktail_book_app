@@ -1,4 +1,8 @@
 <% @cocktails.each do |c| %>
-<%= link_to c.name, cocktail_path(c)%><br>
+    <% if c.user_id == current_user.id %>
+    <%= link_to c.name, user_cocktail_path(current_user, c)%><br>
+    <%else%>
+    <%= link_to c.name, cocktail_path(c)%><br>
+    <%end%>
 <%end%>
 

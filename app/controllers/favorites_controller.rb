@@ -19,7 +19,7 @@ class FavoritesController < ApplicationController
        @user = current_user
        @favorite_cocktail = @user.favorites.build(favorite_params)
        if @favorite_cocktail.save
-            redirect_to user_favorite_path(@user, @favorite_cocktail)
+            redirect_to user_favorites_path(@user)
        else 
 
        end

@@ -1,4 +1,9 @@
-
+<div class="container-lg">
+<ul>
+    <% @cocktail.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+</ul>
 <h1>Create a New Cocktail</h1>
 
 <%= bootstrap_form_for @cocktail, url: user_cocktails_path(current_user), method: :post do |f|%>
@@ -22,3 +27,4 @@
     <%= f.submit "Create Cocktail"%>
 
 <%end%>
+</div>

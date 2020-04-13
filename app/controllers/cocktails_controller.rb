@@ -1,5 +1,5 @@
 class CocktailsController < ApplicationController
-    before_action :current_user, only: [:index, :create]
+    before_action :current_user
 
     def index
         if params[:user_id]
@@ -19,13 +19,17 @@ class CocktailsController < ApplicationController
         @user = current_user
         @cocktail = @user.cocktails.build(cocktail_params)
        if @cocktail.save 
+
         redirect_to user_cocktail_path(@user, @cocktail)
        else 
+        binding.pry
         render 'new'
        end 
     end 
 
     def show
+        @user = current_user
+        @favorite = Favorite.new
         @cocktail = Cocktail.find_by(id: params[:id])
     end 
 

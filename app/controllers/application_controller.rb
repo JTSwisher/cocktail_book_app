@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     helper_method :current_user
+    helper_method :current_cocktail
     
     def hello
     end 
@@ -12,4 +13,5 @@ class ApplicationController < ActionController::Base
     def current_cocktail
         @cocktail = Cocktail.find_by(id: params[:id])
     end 
+    
 end
