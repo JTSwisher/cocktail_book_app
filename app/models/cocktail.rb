@@ -7,7 +7,25 @@ class Cocktail < ActiveRecord::Base
     validates :instructions, presence: true 
 
     accepts_nested_attributes_for :cocktail_ingredients, :reject_if => proc { |attrs| attrs[:quantity].blank? && attrs[:ingredient_attributes][:name].blank?}
-       
     
+    
+    def self.find_cocktails(query)
+        cocktail_ids = []
+
+        if query != ""
+            ingredient = Ingredient.find_by(name: query)
+            
+            ids = CocktailIngredient.all.where(ingredient_id: ingredient.id)
+            
+            ids.each do |i|
+                cocktail_ids << i.cocktail_id
+            end 
+
+            @cocktails = Cocktail.all.where(id: cocktail_ids)
+        else
+            @cocktails = Cocktail.all
+        end 
+    end 
+
 
 end 

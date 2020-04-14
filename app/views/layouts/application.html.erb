@@ -23,8 +23,17 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <%if current_user %>
+        <%= form_tag search_cocktails_path, method: :post, class: "form-inline"  do %>
+          <div class="form-group mx-sm-3 mb-2">
+              <%= text_field_tag :query%>
+          </div>  
+              <%= submit_tag "Search", class: "btn btn-primary mb-2" %>
+        <% end %>
+
         <ul class="navbar-nav ml-auto">
-          <%if current_user %>
+      
               <li class="nav-item">
                 <a class="btn btn-primary" id="account-btn"<%= link_to "Cocktails", cocktails_path%> </a>
               </li>

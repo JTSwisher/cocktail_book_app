@@ -1,9 +1,16 @@
+
+
 <div class="list-group">
-<% @cocktails.each do |c| %>
-    <% if c.user_id == current_user.id %>
-    <%= link_to c.name, user_cocktail_path(current_user, c), class:"list-group-item-action"%><br>
-    <%else%>
-    <%= link_to c.name, cocktail_path(c), class:"list-group-item-action"%><br>
+    <% @cocktails.each do |c| %>
+        <% if c.user_id == current_user.id %>
+        <%= link_to c.name, user_cocktail_path(current_user, c), class:"list-group-item-action"%><br>
+        <%else%>
+        <%= link_to c.name, cocktail_path(c), class:"list-group-item-action"%><br>
+        <%end%>
     <%end%>
-<%end%>
 </div>
+
+
+
+
+

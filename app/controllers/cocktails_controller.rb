@@ -5,10 +5,14 @@ class CocktailsController < ApplicationController
         if params[:user_id]
             @user = current_user
             @cocktails = @user.cocktails.all
-        else
+        elsif params[:query]
+            @cocktails = Cocktail.find_cocktails(params[:query]) 
+        else 
             @cocktails = Cocktail.all 
         end 
     end 
+
+    
 
     def new
         @cocktail = Cocktail.new
@@ -19,10 +23,8 @@ class CocktailsController < ApplicationController
         @user = current_user
         @cocktail = @user.cocktails.build(cocktail_params)
        if @cocktail.save 
-
         redirect_to user_cocktail_path(@user, @cocktail)
        else 
-        binding.pry
         render 'new'
        end 
     end 
