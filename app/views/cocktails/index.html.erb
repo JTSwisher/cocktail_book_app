@@ -1,4 +1,7 @@
 
+ <% if flash[:alert] %>
+        <div class="notice"><%= flash[:alert] %></div>
+<% end %>
 
 <div class="list-group">
     <% @cocktails.each do |c| %>

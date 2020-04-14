@@ -6,7 +6,13 @@ class CocktailsController < ApplicationController
             @user = current_user
             @cocktails = @user.cocktails.all
         elsif params[:query]
-            @cocktails = Cocktail.find_cocktails(params[:query]) 
+            if Ingredient.valid_ingredient(params[:query])
+                flash[:alert].clear
+                @cocktails = Cocktail.find_cocktails(params[:query])
+            else
+                flash[:alert] = "No cocktails exist with that ingredient."
+                @cocktails = Cocktail.all 
+            end 
         else 
             @cocktails = Cocktail.all 
         end 

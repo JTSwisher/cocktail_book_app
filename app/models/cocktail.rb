@@ -12,7 +12,7 @@ class Cocktail < ActiveRecord::Base
     def self.find_cocktails(query)
         cocktail_ids = []
 
-        if query != ""
+        if query != "" && Ingredient.valid_ingredient(query)
             ingredient = Ingredient.find_by(name: query)
             
             ids = CocktailIngredient.all.where(ingredient_id: ingredient.id)
