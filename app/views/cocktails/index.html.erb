@@ -1,7 +1,6 @@
-
+<h1>Cocktails</h1>
  <% if flash[:alert] %>
         <div class="notice"><%= flash[:alert] %></div>
-        <hr>
 <% end %>
 
 
@@ -14,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-   <% @cocktails.each do |c| %>
+    <% @cocktails.each do |c| %>
             
         <tr>
             <td><%= link_to c.name, cocktail_path(c)%></td>
@@ -23,7 +22,12 @@
             <%else%>
                 <td>Not Rated</td>
             <%end%>
-            <td><%= c.user.name %></td>
+
+            <%if c.user_id == current_user.id%>
+                <td>Me</td>
+            <%else%>
+                <td><%= c.user.name %></td>
+            <%end%>
         </tr>
             
     <%end%>

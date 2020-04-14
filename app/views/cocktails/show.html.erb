@@ -1,37 +1,50 @@
 <div class="container">
-<%= @cocktail.name %><br>
-Created By: <%= @cocktail.user.name %><br>
-Directions: <%= @cocktail.instructions %><br>
+    <h2><u><%= @cocktail.name %></u></h2><br>
+    <h4>Created By:</h4> <p><%= @cocktail.user.name %></p>
+    <%if Favorite.rating_count(@cocktail.id) > 0%>
+       <h4> Rated:</h4> <p><%= Favorite.average_rating(@cocktail.id) %> / 10 , by <%= Favorite.rating_count(@cocktail.id)%> users.</p>
+    <%end%>
+    <h4>Directions:</h4> <p><%= @cocktail.instructions %></p>
 
-<%if Favorite.rating_count(@cocktail.id) > 0%>
-Rated: <%= Favorite.average_rating(@cocktail.id) %> / 10 , by <%= Favorite.rating_count(@cocktail.id)%> users.
-<%end%>
+   
+ </div>
 
-<table>
-    <tr>
-        <th>Quantity</th>
-        <th>Ingredient</th>
-    <tr>
-    <% @cocktail.cocktail_ingredients.each do |ci| %>
-        <td><%= ci.quantity %></td> 
-        <td><%= ci.ingredient.name %></td>
-    </tr>
+ <div class="container">   
+
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Quantity</th>
+        <th scope="col">Ingredient</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @cocktail.cocktail_ingredients.each do |ci| %>
+            <tr>
+                <td><%= ci.quantity %></td> 
+                <td><%= ci.ingredient.name %></td>
+            </tr>
+        <%end%>
+        
+    </tbody>
+    </table>
+</div>
+<div class="container">  
+    <h5>Save to Favorites:</h5>
+    <hr>
+    <% if @cocktail.user_id == current_user.id %>
+        <%= link_to "Edit Cocktail", edit_user_cocktail_path(current_user.id, @cocktail)%>
+        <%= link_to "Delete Cocktail", edit_user_cocktail_path(current_user.id, @cocktail)%>
+    <% else %>
+        <%= bootstrap_form_for @favorite, url: user_favorites_path(current_user), method: :post do |f|%>
+            <%= f.hidden_field :user_id, value:  current_user.id  %>
+            <%= f.hidden_field :cocktail_id, value:  @cocktail.id  %>
+            <%=f.select :rating, [1,2,3,3,4,5,6,7,8,9,10 ]%>
+            <%=f.text_field :comments%>
+            <%=f.submit "Save"%>
+        <%end%>
+        
     <% end %>
-</table><br>
 
-<h5>Save to Favorites:</h5>
-<hr>
-<% if @cocktail.user_id == current_user.id %>
-    <%= link_to "Edit Cocktail", edit_user_cocktail_path(current_user.id, @cocktail)%>
-    <%= link_to "Delete Cocktail", edit_user_cocktail_path(current_user.id, @cocktail)%>
-<% else %>
-    <%= bootstrap_form_for @favorite, url: user_favorites_path(current_user), method: :post do |f|%>
-        <%= f.hidden_field :user_id, value:  current_user.id  %>
-        <%= f.hidden_field :cocktail_id, value:  @cocktail.id  %>
-        <%=f.select :rating, [1,2,3,3,4,5,6,7,8,9,10 ]%>
-        <%=f.text_field :comments%>
-    <%=f.submit "Save"%>
-<%end%>
-    
-<% end %>
 </div>
