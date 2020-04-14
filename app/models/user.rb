@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
     has_many :favorites
     has_many :cocktails, through: :favorites
     has_many :cocktails
-   
+    
   
     
     has_secure_password

@@ -1,9 +1,17 @@
-<h1>Welcome to Cocktail Book</h1><br>
-<h3>Find your new favorite drink recipe. Dont forget to add a recipe for the community!</h3>
+<div class="masthead d-flex"> 
+    <div class="container text-center my-auto">
 
-<% if current_user%>
+    <h1 class="mb-1">Welcome to Cocktail Book</h1><br>
+    <h3 class="mb-5">Find your new favorite drink recipe. Dont forget to add a recipe for the community!</h3>
 
-<%else%>
-    <a class="btn btn-primary" id ="success-btn" href="<%= new_user_path %>" role="button">Sign Up</a> 
-    <a class="btn btn-primary" id ="success-btn" href="<%= login_path %>" role="button">Log In</a> 
-<%end%>
+    <% if current_user%>
+
+    <%else%>
+        <a class="btn btn-primary btn-xl js-scroll-trigger"  href="<%= new_user_path %>" >Sign Up</a> 
+        <a class="btn btn-primary btn-xl js-scroll-trigger"  href="<%= login_path %>" >Log In</a> 
+    <%end%>
+  
+    </div>
+
+</div>
+   

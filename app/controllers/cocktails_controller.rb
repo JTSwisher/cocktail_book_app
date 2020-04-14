@@ -12,7 +12,7 @@ class CocktailsController < ApplicationController
 
     def new
         @cocktail = Cocktail.new
-        2.times { @cocktail.cocktail_ingredients.build.build_ingredient}
+        5.times { @cocktail.cocktail_ingredients.build.build_ingredient}
     end 
 
     def create
