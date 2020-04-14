@@ -1,18 +1,37 @@
 
  <% if flash[:alert] %>
         <div class="notice"><%= flash[:alert] %></div>
+        <hr>
 <% end %>
 
-<div class="list-group">
-    <% @cocktails.each do |c| %>
-        <% if c.user_id == current_user.id %>
-        <%= link_to c.name, user_cocktail_path(current_user, c), class:"list-group-item-action"%><br>
-        <%else%>
-        <%= link_to c.name, cocktail_path(c), class:"list-group-item-action"%><br>
-        <%end%>
-    <%end%>
-</div>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Average Rating</th>
+      <th scope="col">Created By</th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @cocktails.each do |c| %>
+            
+        <tr>
+            <td><%= link_to c.name, cocktail_path(c)%></td>
+            <%if Favorite.rating_count(c.id) > 0 %>
+                <td><%= Favorite.average_rating(c.id) %> / 10</td>
+            <%else%>
+                <td>Not Rated</td>
+            <%end%>
+            <td><%= c.user.name %></td>
+        </tr>
+            
+    <%end%>
+  
+  </tbody>
+</table>
+
+    
 
 
 

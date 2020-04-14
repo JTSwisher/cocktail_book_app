@@ -1,7 +1,11 @@
-<div class="container-lg">
+<div class="container">
 <%= @cocktail.name %><br>
 Created By: <%= @cocktail.user.name %><br>
-Directions: <%= @cocktail.instructions %>
+Directions: <%= @cocktail.instructions %><br>
+
+<%if Favorite.rating_count(@cocktail.id) > 0%>
+Rated: <%= Favorite.average_rating(@cocktail.id) %> / 10 , by <%= Favorite.rating_count(@cocktail.id)%> users.
+<%end%>
 
 <table>
     <tr>
@@ -13,8 +17,10 @@ Directions: <%= @cocktail.instructions %>
         <td><%= ci.ingredient.name %></td>
     </tr>
     <% end %>
-</table>
+</table><br>
 
+<h5>Save to Favorites:</h5>
+<hr>
 <% if @cocktail.user_id == current_user.id %>
     <%= link_to "Edit Cocktail", edit_user_cocktail_path(current_user.id, @cocktail)%>
     <%= link_to "Delete Cocktail", edit_user_cocktail_path(current_user.id, @cocktail)%>
@@ -24,7 +30,7 @@ Directions: <%= @cocktail.instructions %>
         <%= f.hidden_field :cocktail_id, value:  @cocktail.id  %>
         <%=f.select :rating, [1,2,3,3,4,5,6,7,8,9,10 ]%>
         <%=f.text_field :comments%>
-    <%=f.submit "Save to Favorites"%>
+    <%=f.submit "Save"%>
 <%end%>
     
 <% end %>

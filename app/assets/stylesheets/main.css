@@ -25,6 +25,10 @@ html, body {
     font-family: 'Montserrat', sans-serif;
   }
 
+  .notice {
+    color: red;
+  }
+
   .container-lg {
     padding-top: 2%;
     padding-bottom: 2%;
@@ -43,7 +47,7 @@ html, body {
     font-family: 'Montserrat', sans-serif;
     padding: 1% 10% 1% 10%;
     position: relative;
-    text-align: center;
+    
     margin-top: 100px;
     margin-bottom: 50px;
     background-color: white;
@@ -62,6 +66,10 @@ html, body {
   line-height: 40px;
   background-color: #f5f5f5;
   display: block;
+  text-align: center;
+}
+
+.table {
   text-align: center;
 }
    
