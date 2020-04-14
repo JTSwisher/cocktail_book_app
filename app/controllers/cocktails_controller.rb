@@ -1,6 +1,6 @@
 class CocktailsController < ApplicationController
     before_action :current_user
-
+    
     def index
         if params[:user_id]
             @user = current_user
@@ -9,9 +9,9 @@ class CocktailsController < ApplicationController
             if Ingredient.valid_ingredient(params[:query])
                 if flash[:alert]
                     flash[:alert].clear
-                    @cocktails = Cocktail.find_cocktails(params[:query])
+                    @cocktails = Cocktail.find_cocktails_by_ingredient(params[:query])
                 else 
-                    @cocktails = Cocktail.find_cocktails(params[:query])
+                    @cocktails = Cocktail.find_cocktails_by_ingredient(params[:query])
                 end 
             else
                 flash[:alert] = "No cocktails exist with that ingredient."
@@ -47,7 +47,7 @@ class CocktailsController < ApplicationController
     def show
         @user = current_user
         @favorite = Favorite.new
-        @cocktail = Cocktail.find_by(id: params[:id])
+        @cocktail = current_cocktail
     end 
 
 private 

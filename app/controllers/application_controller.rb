@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
         @user = User.find_by(id: session[:user_id])
     end 
 
+    def logged_in?
+        !!session[:user_id]
+    end 
+
     def current_cocktail
         @cocktail = Cocktail.find_by(id: params[:id])
     end 

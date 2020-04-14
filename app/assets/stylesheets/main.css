@@ -68,9 +68,13 @@ html, body {
   text-align: center;
 }
 
-.table {
-  text-align: center;
-}
+  .table {
+    text-align: center;
+  }
+
+  .search {
+    margin: 10px;
+  }
 
 
    
@@ -80,7 +84,7 @@ html, body {
     padding-left: 1%;
   }
   
-  #account-btn {
+  .btn {
    margin: 10px;
   }
   

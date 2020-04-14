@@ -23,7 +23,7 @@
         <% @cocktail.cocktail_ingredients.each do |ci| %>
             <tr>
                 <td><%= ci.quantity %></td> 
-                <td><%= ci.ingredient.name %></td>
+                <td><%= ci.ingredient.name.capitalize %></td>
             </tr>
         <%end%>
         
@@ -31,12 +31,14 @@
     </table>
 </div>
 <div class="container">  
-    <h5>Save to Favorites:</h5>
-    <hr>
+    
     <% if @cocktail.user_id == current_user.id %>
-        <%= link_to "Edit Cocktail", edit_user_cocktail_path(current_user.id, @cocktail)%>
-        <%= link_to "Delete Cocktail", edit_user_cocktail_path(current_user.id, @cocktail)%>
+        <hr>
+        <a class="btn btn-primary" <%= link_to "Edit Cocktail", edit_user_cocktail_path(current_user.id, @cocktail)%> </a>
+        <a class="btn btn-primary" <%= link_to "Delete Cocktail", edit_user_cocktail_path(current_user.id, @cocktail)%> </a>
     <% else %>
+        <h5>Save to Favorites:</h5>
+        <hr>
         <%= bootstrap_form_for @favorite, url: user_favorites_path(current_user), method: :post do |f|%>
             <%= f.hidden_field :user_id, value:  current_user.id  %>
             <%= f.hidden_field :cocktail_id, value:  @cocktail.id  %>
