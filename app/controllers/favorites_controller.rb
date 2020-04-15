@@ -3,7 +3,11 @@ class FavoritesController < ApplicationController
     before_action :current_cocktail
 
     def index
-        @favorites = current_user.favorites.all
+        if params[:user_id]
+            @favorites = current_user.favorites.all
+        else 
+            @favorites = Favorite.highest_rated
+        end 
     end
     
     def new

@@ -34,4 +34,9 @@ module FavoritesHelper
             ratings.count
         end 
     end 
+
+    def highest_rated_cocktails(favorite)
+        favorite_cocktail = Cocktail.find_by(id: favorite.cocktail.id)
+        favorite_cocktail
+    end 
 end

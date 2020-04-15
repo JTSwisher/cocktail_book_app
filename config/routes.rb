@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root "application#hello"
 
   resources :users, only: [:show, :new, :create]
+  get 'cocktails/highest-rated', to: 'favorites#index', as: 'favorites'
   resources :cocktails, only: [:show, :new, :create, :index]
+  post 'cocktails/query', to: 'cocktails#index', as: 'search_cocktails'
  
   get '/login', to: 'sessions#new'
   post '/sessions', to: 'sessions#create'
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
 
   
 
+  
 
   resources :users do 
     resources :cocktails, only: [:show, :new, :create, :index, :edit, :update, :destroy]
@@ -24,7 +27,7 @@ Rails.application.routes.draw do
 
   get 'users/:user_id/favorites', to: 'favorites#new', as: 'new_user_favorite'
 
-  post 'cocktails/query', to: 'cocktails#index', as: 'search_cocktails'
+  
 
-  get 'cocktails/top-cocktails'
+  
 end
