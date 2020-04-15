@@ -1,0 +1,32 @@
+<div class="container">
+    <h2><u><%= @cocktail.name %></u></h2><br>
+    <h4>Created By:</h4> <p><%= @cocktail.user.name %></p>
+    <%if rating_count(@cocktail.id) > 0%>
+       <h4> Rated:</h4> <p><%= average_rating(@cocktail.id) %> / 10 , by <%= rating_count(@cocktail.id)%> users.</p>
+    <%end%>
+    <h4>Directions:</h4> <p><%= @cocktail.instructions %></p>
+
+   
+ </div>
+
+ <div class="container">   
+
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Quantity</th>
+        <th scope="col">Ingredient</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @cocktail.cocktail_ingredients.each do |ci| %>
+            <tr>
+                <td><%= ci.quantity %></td> 
+                <td><%= ci.ingredient.name.capitalize %></td>
+            </tr>
+        <%end%>
+        
+    </tbody>
+    </table>
+</div>

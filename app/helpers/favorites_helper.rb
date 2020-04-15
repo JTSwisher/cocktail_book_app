@@ -19,8 +19,6 @@ module FavoritesHelper
         end 
     end 
 
-
-
     def rating_count(cocktail)
         ratings = []
 
@@ -39,4 +37,16 @@ module FavoritesHelper
         favorite_cocktail = Cocktail.find_by(id: favorite.cocktail.id)
         favorite_cocktail
     end 
+
+
+    def cocktail_rating(c)
+        if rating_count(c.id) > 0 
+            content_tag :td, "#{average_rating(c.id)} / 10"
+        else
+            tag.td 'Not Rated'
+        end
+
+    end 
+
+
 end

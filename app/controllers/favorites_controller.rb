@@ -17,6 +17,7 @@ class FavoritesController < ApplicationController
 
     def show 
         @favorite = Favorite.find_by(id: params[:id])
+        @cocktail = current_cocktail
     end 
 
     def create
@@ -27,6 +28,11 @@ class FavoritesController < ApplicationController
        else 
 
        end
+    end 
+
+    def edit
+        @cocktail = current_cocktail
+        @favorite = Favorite.find_by(id: params[:id])
     end 
 
 private

@@ -1,2 +1,9 @@
-<%= @favorite.user.name%>
-<%= @favorite.cocktail.name%>
+<%= render 'cocktails/show'%>
+
+<div class="container">  
+        <h3>My Rating</h3>
+        <h5> <%= @favorite.rating%> / 10</h5>
+        <h5>Comments: <%= @favorite.comments%></h5>
+        <hr>
+        <%= link_to "Update Rating", edit_user_favorite_path(current_user.id, @favorite), class: 'btn btn-primary'%>
+</div>

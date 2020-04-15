@@ -17,12 +17,13 @@
     <% @favorites.each do |c| %>
            
         <tr>
-            <td><%= link_to highest_rated_cocktails(c).name, cocktail_path(c)%></td>
-            <%if rating_count(c.id) > 0 %>
-                <td><%= average_rating(c.id) %> / 10</td>
+            <%if current_path  %>
+                <td><%= link_to highest_rated_cocktails(c).name, user_favorite_path(current_user.id, c)%></td>
             <%else%>
-                <td>Not Rated</td>
+                <td><%= link_to highest_rated_cocktails(c).name, cocktail_path(c)%></td>
             <%end%>
+           
+            <%= cocktail_rating(c) %>
 
             <%if highest_rated_cocktails(c).user_id == current_user.id%>
                 <td>Me</td>

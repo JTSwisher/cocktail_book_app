@@ -23,11 +23,8 @@
             
         <tr>
             <td><%= link_to c.name, cocktail_path(c)%></td>
-            <%if rating_count(c.id) > 0 %>
-                <td><%= average_rating(c.id) %> / 10</td>
-            <%else%>
-                <td>Not Rated</td>
-            <%end%>
+            
+            <%= cocktail_rating(c) %>
 
             <%if c.user_id == current_user.id%>
                 <td>Me</td>
