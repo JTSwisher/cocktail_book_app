@@ -1,6 +1,6 @@
 <div class="container">
     <h2><u><%= @cocktail.name %></u></h2><br>
-    <h4>Created By:</h4> <p><%= @cocktail.user.name %></p>
+    <h4>Created By:</h4> <p><%= cocktail_owner(@cocktail) %></p>
     <%if rating_count(@cocktail.id) > 0%>
        <h4> Rated:</h4> <p><%= average_rating(@cocktail.id) %> / 10 , by <%= rating_count(@cocktail.id)%> users.</p>
     <%end%>
