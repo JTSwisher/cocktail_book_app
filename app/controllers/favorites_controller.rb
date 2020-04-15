@@ -9,11 +9,6 @@ class FavoritesController < ApplicationController
             @favorites = Favorite.highest_rated
         end 
     end
-    
-    def new
-        @cocktail = current_cocktail
-        @favorite = Favorite.new 
-    end 
 
     def show 
         @favorite = Favorite.find_by(id: params[:id])

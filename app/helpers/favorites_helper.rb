@@ -48,5 +48,12 @@ module FavoritesHelper
 
     end 
 
+    def user_favorite(user, cocktail)
+        if !!user.favorites.find_by(cocktail_id: cocktail.id)
+            return true
+        else
+            return false 
+        end 
+    end 
 
 end
