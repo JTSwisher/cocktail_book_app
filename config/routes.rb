@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   get 'users/:user_id/favorites', to: 'favorites#new', as: 'new_user_favorite'
 
   post 'cocktails/query', to: 'cocktails#index', as: 'search_cocktails'
+
+  get 'cocktails/top-cocktails'
 end

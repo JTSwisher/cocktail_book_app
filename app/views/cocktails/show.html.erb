@@ -1,8 +1,8 @@
 <div class="container">
     <h2><u><%= @cocktail.name %></u></h2><br>
     <h4>Created By:</h4> <p><%= @cocktail.user.name %></p>
-    <%if Favorite.rating_count(@cocktail.id) > 0%>
-       <h4> Rated:</h4> <p><%= Favorite.average_rating(@cocktail.id) %> / 10 , by <%= Favorite.rating_count(@cocktail.id)%> users.</p>
+    <%if rating_count(@cocktail.id) > 0%>
+       <h4> Rated:</h4> <p><%= average_rating(@cocktail.id) %> / 10 , by <%= rating_count(@cocktail.id)%> users.</p>
     <%end%>
     <h4>Directions:</h4> <p><%= @cocktail.instructions %></p>
 
