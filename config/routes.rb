@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/auth/github/callback', to: 'sessions#create'
-
+  get '/auth/google_oauth2/callback', to: 'sessions#create'
   
  
   
