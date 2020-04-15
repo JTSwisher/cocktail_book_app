@@ -1,4 +1,9 @@
-<h1>Cocktails</h1>
+<% if current_path %>
+    <h1>My Recipes</h1>
+<% else%>
+    <h1>Cocktails</h1>
+<% end%>
+
 <%= link_to "Highest Rated", favorites_path %>
  <% if flash[:alert] %>
         <div class="notice"><%= flash[:alert] %></div>

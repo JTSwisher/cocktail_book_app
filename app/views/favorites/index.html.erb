@@ -1,4 +1,10 @@
-<h1>Highest Rated Cocktails</h1>
+<% if current_path %>
+    <h1>My Favorites</h1>
+<% else%>
+    <h1>Top Rated</h1>
+<% end%>
+
+
 <table class="table">
   <thead>
     <tr>
