@@ -30,6 +30,14 @@ class FavoritesController < ApplicationController
         @favorite = Favorite.find_by(id: params[:id])
     end 
 
+    def update
+
+    end 
+
+    def delete
+
+    end 
+
 private
 
     def favorite_params

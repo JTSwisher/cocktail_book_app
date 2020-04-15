@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
     helper_method :current_cocktail
     
-    def hello
+    def index
     end 
 
     def current_user
