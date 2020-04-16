@@ -1,16 +1,20 @@
- <div class="container-lg">
+<div class="container">
+  <div class="form">
+    <h3>Sign In:</h3>
+    <hr><br>
+      <%= bootstrap_form_for @user, url: {action: "create", controller: "sessions"} do |f|%>
+        <% if flash[:alert] %>
+          <div class="notice"><%= flash[:alert] %></div>
+        <% end %>
+          <%= f.text_field :email%> <br>
+          <%=f.password_field :password%><br>
+          <%=f.password_field :password_confirmation%><br>
+          <%=f.submit "Login", class: "btn btn-primary"%>
+          <%= link_to "Cancel", root_path, class: "btn btn-primary"%>
+      <%end%><br>
 
-    <%= bootstrap_form_for @user, url: {action: "create", controller: "sessions"} do |f|%>
-      <% if flash[:alert] %>
-        <div class="notice"><%= flash[:alert] %></div>
-      <% end %>
-        <%= f.text_field :email%> <br>
-        <%=f.password_field :password%><br>
-        <%=f.password_field :password_confirmation%><br>
-        <%=f.submit "Login"%>
-    <%end%>
-
-    <%= link_to "Login via GitHub", "/auth/github"%><br>
-
-    <%= link_to "Login via Google", "auth/google_oauth2"%>
+      <h5>Sign in with:</h5>
+      <a class="logo" href ="/auth/google_oauth2"> <img src= <%= image_path("g_icons.png") %>></a>
+      <a class="logo" href="/auth/github"><%= octicon "mark-github", height: 64 %> </a>
+    </div>
 </div>

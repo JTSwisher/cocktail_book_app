@@ -28,6 +28,8 @@ gem 'omniauth-oauth2'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 
+gem 'octicons'
+gem 'octicons_helper'
 
 gem 'pry-rails', :group => :development
 
