@@ -1,7 +1,11 @@
 <% if current_path %>
     <h1>My Favorites</h1>
+    <%= link_to "All Cocktails", cocktails_path, class: "btn btn-primary" %>
+    <%= link_to "Create New Cocktail",new_user_cocktail_path(current_user), class: "btn btn-primary"%>
 <% else%>
     <h1>Top Rated</h1>
+    <%= link_to "All Cocktails", cocktails_path, class: "btn btn-primary" %>
+    <%= link_to "Create New Cocktail",new_user_cocktail_path(current_user), class: "btn btn-primary"%>
 <% end%>
 
 

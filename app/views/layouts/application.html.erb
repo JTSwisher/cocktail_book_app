@@ -27,7 +27,7 @@
       <%if current_user %>
         <%= form_tag search_cocktails_path, method: :post, class: "form-inline ml-auto"  do %>
           <div class="form-group mx-sm-3 mb-2 search">
-              <%= text_field_tag :query, placeholder="ingredient..", class: "form-control" %>
+              <%= text_field_tag :query, nil, placeholder: "search by ingredient", class: "form-control" %>
               
           </div>  
               <%= submit_tag "Search Cocktails", class: "btn btn-primary " %>

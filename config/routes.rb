@@ -5,13 +5,13 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :new, :create]
   
-  get 'cocktails/highest-rated', to: 'favorites#index', as: 'favorites'
+  get 'cocktails/highest_rated', to: 'favorites#index', as: 'favorites'
   resources :cocktails, only: [:show, :new, :create, :index]
   post 'cocktails/query', to: 'cocktails#index', as: 'search_cocktails'
  
   get '/login', to: 'sessions#new'
   post '/sessions', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  delete '/logout/:id', to: 'sessions#destroy', as: 'logout'
   get '/auth/github/callback', to: 'sessions#create'
   get '/auth/google_oauth2/callback', to: 'sessions#create'
   

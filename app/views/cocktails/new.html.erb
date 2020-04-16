@@ -30,7 +30,8 @@
                         </div>    
                     <%end%>
 
-            <%= f.submit "Create Cocktail"%>
+            <%= f.submit "Create Cocktail", class: "btn btn-primary"%>
+            <%= link_to "Cancel", user_path(current_user), class: "btn btn-danger"%>
 
         <%end%>
     </div>

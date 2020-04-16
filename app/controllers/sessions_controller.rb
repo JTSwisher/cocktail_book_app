@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    before_action :require_login, only: [:destroy]
 
     def new
         @user = User.new
@@ -25,9 +26,6 @@ class SessionsController < ApplicationController
             end 
         end 
     end
-
-
-  
 
     def destroy
         session.delete :user_id
