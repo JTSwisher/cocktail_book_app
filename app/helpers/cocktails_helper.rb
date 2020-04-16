@@ -10,4 +10,15 @@ module CocktailsHelper
         end
     end
 
+    def cocktail_rating(c)
+        #using rating_count helper to generate number of given ratings for a specified cocktail if above
+        # zero render rating else render "not rated"
+        if rating_count(c.id) > 0 
+            content_tag :td, "#{average_rating(c.id)} / 10"
+        else
+            tag.td 'Not Rated'
+        end
+
+    end 
+
 end

@@ -1,6 +1,8 @@
 class CocktailsController < ApplicationController
     before_action :current_user
+    before_action :require_login
     before_action :current_cocktail
+    before_action :cocktail_ownership, only: [:edit, :destroy, :update]
     
     def index
         if params[:user_id]
@@ -79,7 +81,7 @@ private
     def cocktail_params
             params.require(:cocktail).permit(:name, :instructions,
             cocktail_ingredients_attributes: [:id, :quantity,
-            ingredient_attributes: [:id, :name]])
+            ingredient_attributes: [:name]])
     end 
 
 

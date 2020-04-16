@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+    before_action :current_user, only: [:show]
+    before_action :require_login, only: [:show]
+
     def new
         @user = User.new
      end 
@@ -14,7 +17,7 @@ class UsersController < ApplicationController
      end 
  
      def show
-         @user = User.find(params[:id])
+         current_user
      end
  
  

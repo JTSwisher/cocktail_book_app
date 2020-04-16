@@ -1,6 +1,9 @@
 class FavoritesController < ApplicationController
-    before_action :current_user
-    before_action :current_cocktail
+    before_action :current_user, only: [:create]
+    before_action :require_login
+    before_action :favorite_ownership, only: [:edit, :update, :destroy]
+    before_action :current_favorite_object, only: [ :show, :edit, :update, :destroy ]
+    before_action :current_favorite_cocktail, only: [ :show, :edit, :update, :destroy ]
 
     def index
         if params[:user_id]
@@ -11,8 +14,7 @@ class FavoritesController < ApplicationController
     end
 
     def show 
-        @favorite = Favorite.find_by(id: params[:id])
-        @cocktail = current_cocktail
+        
     end 
 
     def create
@@ -26,19 +28,15 @@ class FavoritesController < ApplicationController
     end 
 
     def edit
-        @cocktail = current_cocktail
-        @favorite = Favorite.find_by(id: params[:id])
+        
     end 
 
     def update
-        @favorite = Favorite.find_by(id: params[:id])
         @favorite.update(favorite_params)
         redirect_to user_favorite_path(@favorite.user, @favorite)
     end 
 
     def destroy
-        binding.pry
-        @favorite = Favorite.find_by(id: params[:id])
         @favorite.destroy
         redirect_to user_favorites_path(current_user)
     end 

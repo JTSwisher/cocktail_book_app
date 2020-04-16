@@ -1,5 +1,8 @@
 <div class="masthead d-flex"> 
     <div class="container text-center my-auto">
+    <% if flash[:alert] %>
+          <div class="notice"><%= flash[:alert] %></div>
+    <% end %>
 
     <h2 class="mb-1">Cocktail Book</h2><br>
     <h5 class="mb-5">Find your new favorite drink recipe. Dont forget to add a recipe for the community!</h5>
