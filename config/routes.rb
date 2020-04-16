@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root "application#index"
 
   resources :users, only: [:show, :new, :create]
+  
   get 'cocktails/highest-rated', to: 'favorites#index', as: 'favorites'
   resources :cocktails, only: [:show, :new, :create, :index]
   post 'cocktails/query', to: 'cocktails#index', as: 'search_cocktails'

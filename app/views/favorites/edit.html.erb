@@ -1,7 +1,7 @@
 <%= render 'cocktails/show'%>
 
 
-<%= bootstrap_form_for @favorite, url: user_favorites_path(current_user), method: :post do |f|%>
+<%= bootstrap_form_for @favorite, url: user_favorite_path(current_user, @favorite), method: :patch do |f|%>
 <%= f.hidden_field :user_id, value:  current_user.id  %>
 <%= f.hidden_field :cocktail_id, value:  @cocktail.id  %>
 <%=f.select :rating, [1,2,3,3,4,5,6,7,8,9,10 ]%>

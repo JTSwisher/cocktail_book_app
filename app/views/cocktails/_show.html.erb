@@ -12,21 +12,25 @@
  <div class="container">   
 
     <table class="table">
-    <thead>
-        <tr>
-        <th scope="col">Quantity</th>
-        <th scope="col">Ingredient</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <% @cocktail.cocktail_ingredients.each do |ci| %>
+        <thead>
             <tr>
-                <td><%= ci.quantity %></td> 
-                <td><%= ci.ingredient.name.capitalize %></td>
+            <th scope="col">Quantity</th>
+            <th scope="col">Ingredient</th>
             </tr>
-        <%end%>
-        
-    </tbody>
+        </thead>
+
+        <tbody>
+            <% @cocktail.cocktail_ingredients.each do |ci| %>
+                <tr>
+                    <% if ci.quantity%>
+                        <td><%= ci.quantity %></td> 
+                    <% end %>
+                    <% if ci.ingredient.name%>
+                        <td><%= ci.ingredient.name.capitalize %></td>
+                    <% end %>
+                </tr>
+            <%end%>
+            
+        </tbody>
     </table>
 </div>

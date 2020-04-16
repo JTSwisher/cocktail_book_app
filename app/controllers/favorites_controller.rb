@@ -31,11 +31,16 @@ class FavoritesController < ApplicationController
     end 
 
     def update
-
+        @favorite = Favorite.find_by(id: params[:id])
+        @favorite.update(favorite_params)
+        redirect_to user_favorite_path(@favorite.user, @favorite)
     end 
 
-    def delete
-
+    def destroy
+        binding.pry
+        @favorite = Favorite.find_by(id: params[:id])
+        @favorite.destroy
+        redirect_to user_favorites_path(current_user)
     end 
 
 private

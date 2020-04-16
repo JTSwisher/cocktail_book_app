@@ -17,5 +17,15 @@ class ApplicationController < ActionController::Base
     def current_cocktail
         @cocktail = Cocktail.find_by(id: params[:id])
     end 
+
+    def destroy_favorites(cocktail_id)
+        #favorites = []
+        @cf = Favorite.all.where(cocktail_id: cocktail_id)
+            @cf.each do |f|
+                f.destroy
+            end 
+
+            #favorites.all.destroy
+    end
     
 end

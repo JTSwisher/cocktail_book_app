@@ -1,10 +1,15 @@
-<h2>Account Information</h2>
-<h5>Name: <%= @user.name %></h5>
-<h5>Email: <%= @user.email %></h5><br>
+<div class="container">
+<div class="form">
+    <h2>Account Information</h2>
+    <hr><br>
+    <h5>Name: <%= @user.name %></h5>
+    <h5>Email: <%= @user.email %></h5><br>
 
 
 
-<p><%= link_to "My Cocktail Recipes", user_cocktails_path(@user) %> </p>
-<p> <%=link_to "Favorited Recipes", user_favorites_path(@user) %> </p>
+    <p><%= link_to "My Cocktail Recipes", user_cocktails_path(@user) %> </p>
+    <p> <%=link_to "Favorited Recipes", user_favorites_path(@user) %> </p>
 
-<p> <%= link_to "New Cocktail", new_user_cocktail_path(@user) %> </p>
+    <p> <%= link_to "New Cocktail", new_user_cocktail_path(@user) %> </p>
+</div>
+</div>

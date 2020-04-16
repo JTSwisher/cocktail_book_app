@@ -6,7 +6,7 @@ class Cocktail < ActiveRecord::Base
     validates :name, presence: true
     validates :instructions, presence: true 
 
-    accepts_nested_attributes_for :cocktail_ingredients, :reject_if => proc { |attrs| attrs[:quantity].blank? && attrs[:ingredient_attributes][:name].blank?}
+    accepts_nested_attributes_for :cocktail_ingredients, limit: 5,  :reject_if => proc { |attrs| attrs[:quantity].blank? && attrs[:ingredient_attributes][:name].blank?}
     
     
     def self.find_cocktails_by_ingredient(query)

@@ -6,4 +6,5 @@
         <h5>Comments: <%= @favorite.comments%></h5>
         <hr>
         <%= link_to "Update Rating", edit_user_favorite_path(current_user.id, @favorite), class: 'btn btn-primary'%>
+        <%= link_to "Remove from Favorites", user_favorite_path(current_user.id, @favorite), :method => :delete, class: 'btn btn-danger'%>
 </div>

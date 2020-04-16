@@ -37,7 +37,8 @@ module FavoritesHelper
 
     def highest_rated_cocktails(favorite)
         # using favorite object to locate associated cocktail to display in view
-        favorite_cocktail = Cocktail.find_by(id: favorite.cocktail.id)
+        favorite_cocktail = Cocktail.find(favorite.cocktail_id)
+        
         favorite_cocktail
     end 
 

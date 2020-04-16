@@ -1,30 +1,37 @@
-<div class="container-lg">
-<ul>
-    <% @cocktail.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-</ul>
-<h1>Create a New Cocktail</h1>
+<div class="container">
+    <div class="form">
+        <ul>
+            <% @cocktail.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+        </ul>
+        <h1>Create a New Cocktail</h1>
 
-<%= bootstrap_form_for @cocktail, url: user_cocktails_path(current_user), method: :post do |f|%>
+        <%= bootstrap_form_for @cocktail, url: user_cocktails_path(current_user), method: :post do |f|%>
 
 
 
-    <%= f.text_field :name, label: "Cocktail Name"%>
-    <%= f.text_field :instructions, label: "Mixing Directions"%>
+            <%= f.text_field :name, label: "Cocktail Name"%>
+            <%= f.text_field :instructions, label: "Mixing Directions"%>
 
-    <h3> Ingredients:</h3>
-   
+            <h3> Ingredients:</h3>
         
-            <%= f.fields_for :cocktail_ingredients do |ci|%>
-                <%= ci.text_field :quantity%>
-        
-                    <%= ci.fields_for :ingredient do |i|%>
-                        <%= i.text_field :name %>
+                
+                    <%= f.fields_for :cocktail_ingredients do |ci|%>
+                        <div class="row">
+                            <div class="col">
+                                <%= ci.text_field :quantity%>
+                             </div> 
+                                <%= ci.fields_for :ingredient do |i|%>
+                                <div class="col">
+                                    <%= i.text_field :name %>
+                                </div>    
+                                <%end%>
+                        </div>    
                     <%end%>
-            <%end%>
 
-    <%= f.submit "Create Cocktail"%>
+            <%= f.submit "Create Cocktail"%>
 
-<%end%>
+        <%end%>
+    </div>
 </div>
