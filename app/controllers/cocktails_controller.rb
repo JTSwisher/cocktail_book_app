@@ -6,7 +6,6 @@ class CocktailsController < ApplicationController
     
     def index
         if params[:user_id]
-            @user = current_user
             @cocktails = @user.cocktails.all
         elsif params[:query]
             if Ingredient.valid_ingredient(params[:query])
@@ -38,7 +37,6 @@ class CocktailsController < ApplicationController
     end 
 
     def create
-        @user = current_user
         @cocktail = @user.cocktails.build(cocktail_params)
         if @cocktail.save 
             redirect_to user_cocktail_path(@user, @cocktail)
@@ -48,13 +46,10 @@ class CocktailsController < ApplicationController
     end 
 
     def show
-        @user = current_user
         @favorite = Favorite.new
-        @cocktail = current_cocktail
     end 
 
     def edit
-        @cocktail = current_cocktail
         count = @cocktail.cocktail_ingredients.size
         if count < 5
             available_ingredients = 5 - count
@@ -63,14 +58,12 @@ class CocktailsController < ApplicationController
     end 
 
     def update
-        @cocktail = current_cocktail
         @cocktail.update(cocktail_params)
         redirect_to user_cocktail_path(@cocktail.user.id, @cocktail) 
         #creates all new objects for ingredients after updating not the newly added ingredients or newl changed
     end 
 
     def destroy
-        @cocktail = current_cocktail
         destroy_favorites(@cocktail.id)
         @cocktail.destroy
         redirect_to user_cocktails_path(current_user)

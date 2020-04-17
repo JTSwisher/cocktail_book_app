@@ -1,16 +1,12 @@
 class FavoritesController < ApplicationController
-    before_action :current_user, only: [:create]
+    before_action :current_user
     before_action :require_login
     before_action :favorite_ownership, only: [:edit, :update, :destroy]
     before_action :current_favorite_object, only: [ :show, :edit, :update, :destroy ]
     before_action :current_favorite_cocktail, only: [ :show, :edit, :update, :destroy ]
 
     def index
-        if params[:user_id]
-            @favorites = current_user.favorites.all
-        else 
-            @favorites = Favorite.highest_rated
-        end 
+        params[:user_id] ? @favorites = current_user.favorites.all : @favorites = Favorite.highest_rated
     end
 
     def show 
@@ -18,12 +14,11 @@ class FavoritesController < ApplicationController
     end 
 
     def create
-       @user = current_user
        @favorite_cocktail = @user.favorites.build(favorite_params)
        if @favorite_cocktail.save
             redirect_to user_favorites_path(@user)
        else 
-
+            redirect_to user_favorites_path(@user)
        end
     end 
 
