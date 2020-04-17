@@ -8,16 +8,7 @@ class Cocktail < ActiveRecord::Base
 
     accepts_nested_attributes_for :cocktail_ingredients, limit: 5,  :reject_if => proc { |attrs| attrs[:quantity].blank? && attrs[:ingredient_attributes][:name].blank?}
     
-    #def cocktail_ingredients_attributes=(cocktail_ingredient_attributes)
-     #   cocktail_ingredient_attributes.values.each do |ci|
-      #      if ci[:quantity] != ""
-       #         cocktail_ingredient = CocktailIngredient.find_or_create_by(quantity: ci[:quantity])
-        #        binding.pry
-         #       self.cocktail_ingredients[:quantity] = cocktail_ingredient.quantity
-                
-          #  end 
-        #end 
-    #end 
+
 
     def self.find_cocktails_by_ingredient(query)
         ingredients = query.split(/\W+/)
@@ -44,6 +35,18 @@ class Cocktail < ActiveRecord::Base
             @cocktails
         else 
             @cocktails = Cocktail.all
+        end 
+    end 
+
+    def self.user_cocktails_index(user)
+        @cocktails = user.cocktails.all
+    end 
+
+    def self.query_cocktails_index(query)
+        if Ingredient.valid_ingredient(query)
+            @cocktails = Cocktail.find_cocktails_by_ingredient(query)
+        else
+            @cocktails = Cocktail.all 
         end 
     end 
 

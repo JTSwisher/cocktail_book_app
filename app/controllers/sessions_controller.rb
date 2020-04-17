@@ -2,8 +2,12 @@ class SessionsController < ApplicationController
     before_action :require_login, only: [:destroy]
 
     def new
-        @user = User.new
-    end 
+        if !current_user
+            @user = User.new
+        else 
+            redirect_to user_path(current_user)
+        end 
+     end 
 
     def create
         if auth_hash
@@ -16,14 +20,19 @@ class SessionsController < ApplicationController
             redirect_to user_path(user)
           end 
         else
-            @user = User.find_by(email: params[:user][:email])
-            if @user.authenticate(params[:user][:password])
-                session[:user_id] = @user.id 
-                redirect_to user_path(@user)
-            else 
-                flash[:alert] = "Your login credentials were incorrect. Please try again."
+            if @user = User.find_by(email: params[:user][:email])
+               if  @user.authenticate(params[:user][:password])
+                    session[:user_id] = @user.id 
+                    redirect_to user_path(@user)
+                else 
+                    flash[:alert] = "Your login credentials were incorrect. Please try again."
+                    redirect_to login_path
+                end
+            else
+                flash[:alert] = "Your login credentials were incorrect. Please try again." 
                 redirect_to login_path
-            end 
+            end
+            
         end 
     end
 

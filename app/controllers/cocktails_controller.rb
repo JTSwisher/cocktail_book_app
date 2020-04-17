@@ -6,26 +6,11 @@ class CocktailsController < ApplicationController
     
     def index
         if params[:user_id]
-            @cocktails = @user.cocktails.all
+            @cocktails = Cocktail.user_cocktails_index(current_user)
         elsif params[:query]
-            if Ingredient.valid_ingredient(params[:query])
-                if flash[:alert]
-                    flash[:alert].clear
-                    @cocktails = Cocktail.find_cocktails_by_ingredient(params[:query])
-                else 
-                    @cocktails = Cocktail.find_cocktails_by_ingredient(params[:query])
-                end 
-            else
-                flash[:alert] = "No cocktails exist with that ingredient."
-                @cocktails = Cocktail.all 
-            end 
+            @cocktails = Cocktail.query_cocktails_index(params[:query]) 
         else 
-            if flash[:alert]
-                flash[:alert].clear
-                @cocktails = Cocktail.all 
-            else 
-                @cocktails = Cocktail.all 
-            end 
+             @cocktails = Cocktail.all 
         end 
     end 
 
