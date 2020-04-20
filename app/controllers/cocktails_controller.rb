@@ -9,6 +9,14 @@ class CocktailsController < ApplicationController
             @cocktails = Cocktail.user_cocktails_index(current_user)
         elsif params[:query] #index cocktails based on search query
             @cocktails = Cocktail.query_cocktails_index(params[:query]) 
+            if !@cocktails
+                flash[:alert] = "No cocktails match your search query" 
+                @cocktails = Cocktail.all
+            else
+                flash[:alert].clear unless flash[:alert] == nil
+                @cocktails = Cocktail.query_cocktails_index(params[:query])
+            end
+
         else 
              @cocktails = Cocktail.all 
         end 
@@ -64,6 +72,5 @@ private
             cocktail_ingredients_attributes: [:id, :quantity,
             ingredient_attributes: [:name]])
     end 
-
 
 end

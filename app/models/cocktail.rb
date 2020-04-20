@@ -48,8 +48,6 @@ class Cocktail < ActiveRecord::Base
     def self.query_cocktails_index(query)
         if Ingredient.valid_ingredient(query)
             @cocktails = Cocktail.find_cocktails_by_ingredient(query)
-        else
-            @cocktails = Cocktail.all 
         end 
     end 
 
