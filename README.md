@@ -6,7 +6,7 @@ CocktailBook allows users to create cocktail recipes and view recipes created by
 
 ## Demo
 
-[CocktailBook: A Ruby on Rails App](https://youtu.be/ji6Fuu7160M)
+[CocktailBook: A Ruby on Rails App](https://youtu.be/r5XVMWq2WnA)
 
 ## Installation
 
