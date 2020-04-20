@@ -6,7 +6,11 @@ class FavoritesController < ApplicationController
     before_action :current_favorite_cocktail, only: [ :show, :edit, :update, :destroy ]
 
     def index
-        params[:user_id] ? @favorites = current_user.favorites.all : @favorites = Favorite.highest_rated
+       if params[:user_id]
+            @favorites = current_user.favorites.all 
+       else 
+            @favorites = Favorite.highest_rated
+       end 
     end
 
     def show 
@@ -16,6 +20,8 @@ class FavoritesController < ApplicationController
     def create
        @favorite_cocktail = @user.favorites.build(favorite_params)
        if @favorite_cocktail.save
+ 
+            TopCocktail.update_average_rating(@favorite_cocktail.cocktail_id, @favorite_cocktail.rating)
             redirect_to user_favorites_path(@user)
        else 
             redirect_to user_favorites_path(@user)
@@ -43,3 +49,13 @@ private
     end 
 
 end
+
+
+#top_cocktails table
+#cocktail_id
+#average_rating 
+
+#when a favorite object is being created check to see if a top_rated object exist with the cocktail_id
+#of the newly created object. If it does update the average rating for that cocktail via a TopRated class method
+#then update the average_rating value TopRated.update(average_rating).where (id: cocktail_id)
+

@@ -3,6 +3,8 @@ class CocktailIngredient < ActiveRecord::Base
     belongs_to :ingredient
 
     validates :quantity, presence: true
+    accepts_nested_attributes_for :ingredient
+   
    
     def ingredient_attributes=(ingredient_attributes)
         ingredient_attributes.values.each do |i|

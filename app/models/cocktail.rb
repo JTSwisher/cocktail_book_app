@@ -1,12 +1,15 @@
 class Cocktail < ActiveRecord::Base
     belongs_to :user
+    has_many :top_cocktails
     has_many :cocktail_ingredients
     has_many :ingredients, through: :cocktail_ingredients
+    validates_associated :cocktail_ingredients
 
     validates :name, presence: true
     validates :instructions, presence: true 
+    validates :cocktail_ingredients, presence: true
 
-    accepts_nested_attributes_for :cocktail_ingredients, limit: 5,  :reject_if => proc { |attrs| attrs[:quantity].blank? && attrs[:ingredient_attributes][:name].blank?}
+    accepts_nested_attributes_for :cocktail_ingredients, limit: 5,  :reject_if => proc { |attrs| attrs[:quantity].blank? || attrs[:ingredient_attributes][:name].blank?}
     
 
 

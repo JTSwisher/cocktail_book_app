@@ -50,6 +50,12 @@ class ApplicationController < ActionController::Base
             f.destroy
         end 
     end
+
+    def destroy_top_cocktail(cocktail_id)
+        @top_cocktail = TopCocktail.find(cocktail_id: cocktail_id)
+        @cocktail.destroy
+    end 
+
     
     def cocktail_ownership
         #check cocktail object ownership before allowing edit, update, desstroy actions on object by user

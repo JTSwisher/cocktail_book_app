@@ -5,9 +5,9 @@ class CocktailsController < ApplicationController
     before_action :cocktail_ownership, only: [:edit, :destroy, :update]
     
     def index
-        if params[:user_id]
+        if params[:user_id] #index cocktails for a specific user
             @cocktails = Cocktail.user_cocktails_index(current_user)
-        elsif params[:query]
+        elsif params[:query] #index cocktails based on search query
             @cocktails = Cocktail.query_cocktails_index(params[:query]) 
         else 
              @cocktails = Cocktail.all 
@@ -26,6 +26,8 @@ class CocktailsController < ApplicationController
         if @cocktail.save 
             redirect_to user_cocktail_path(@user, @cocktail)
         else 
+            count = @cocktail.cocktail_ingredients.size
+            5.times { @cocktail.cocktail_ingredients.build.build_ingredient}
             render 'new'
         end 
     end 
@@ -50,6 +52,7 @@ class CocktailsController < ApplicationController
 
     def destroy
         destroy_favorites(@cocktail.id)
+        destroy_top_cocktail(@cocktail.id)
         @cocktail.destroy
         redirect_to user_cocktails_path(current_user)
     end 

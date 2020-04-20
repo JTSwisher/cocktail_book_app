@@ -1,4 +1,5 @@
 class Favorite < ActiveRecord::Base
+    include FavoritesHelper
     belongs_to :cocktail
     belongs_to :user
     validates :rating, presence: true

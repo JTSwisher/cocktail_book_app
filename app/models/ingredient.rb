@@ -14,7 +14,7 @@ class Ingredient < ActiveRecord::Base
             ingredient = Ingredient.where("name like ?", "%#{i.downcase}%") # locate all ingredient objects where name attribute
             #contains word or partial of it.
 
-            if !ingredient.empty? #if ingredient is not empty add ingredient to calid ingredient array
+            if !ingredient.empty? #if ingredient is not empty add ingredient to valid ingredient array
                 valid_ingredient << ingredient
             end 
         end 

@@ -1,7 +1,11 @@
 <%= render 'show'%>
 
 <%= bootstrap_form_for @cocktail, url: user_cocktail_path(current_user, @cocktail) do |f|%>
-
+    <ul>
+        <% @cocktail.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
 
 
     <%= f.text_field :name, label: "Cocktail Name"%>

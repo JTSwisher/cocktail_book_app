@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :new, :create]
   
-  get 'cocktails/highest_rated', to: 'favorites#index', as: 'favorites'
+  get 'cocktails/highest_rated', to: 'top_cocktails#index', as: 'favorites'
   resources :cocktails, only: [:show, :new, :create, :index]
   post 'cocktails/query', to: 'cocktails#index', as: 'search_cocktails'
  
