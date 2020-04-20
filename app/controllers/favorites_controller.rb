@@ -38,7 +38,6 @@ class FavoritesController < ApplicationController
     end 
 
     def destroy
-        
         update_top_cocktail(@favorite.cocktail.id, @favorite.rating)
         @favorite.destroy
         redirect_to user_favorites_path(current_user)

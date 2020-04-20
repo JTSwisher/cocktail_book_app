@@ -1,24 +1,41 @@
 # README
+# Cocktail Book
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+CocktailBook allows users to create cocktail recipes and view recipes created by the community. 
 
-Things you may want to cover:
 
-* Ruby version
+## Demo
 
-* System dependencies
+[CocktailBook: A Ruby on Rails App](https://youtu.be/ji6Fuu7160M)
 
-* Configuration
+## Installation
 
-* Database creation
+Clone repo locally:
 
-* Database initialization
+```sh
+$ git clone git@github.com:JTSwisher/cocktail_book_app.git
+$ cd cocktail_book_app
+$ bundle install
+```
+Run migrations:
+```sh
+$ rails db:migrate
+```
+Start local server:
+```sh
+$ rails s
+```
 
-* How to run the test suite
+## Built With
 
-* Services (job queues, cache servers, search engines, etc.)
+* Ruby
+* Rails
+* Omniauth
 
-* Deployment instructions
+## Contributing
 
-* ...
+Bug reports and pull requests are welcome on GitHub at https://github.com/JTSwisher/cocktail_book_app
+
+## License
+
+This application is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
