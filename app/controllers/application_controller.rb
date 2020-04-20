@@ -52,8 +52,21 @@ class ApplicationController < ActionController::Base
     end
 
     def destroy_top_cocktail(cocktail_id)
-        @top_cocktail = TopCocktail.find(cocktail_id: cocktail_id)
-        @cocktail.destroy
+        if @top_cocktail = TopCocktail.find_by(cocktail_id: cocktail_id)
+            @top_cocktail.destroy
+        end 
+    end 
+
+    def update_top_cocktail(cocktail_id, rating)
+        @top_cocktail = TopCocktail.find_by(cocktail_id: cocktail_id)
+        if @top_cocktail.ratings_count == 1
+            @top_cocktail.destroy
+        else 
+            new_ratings_count = @top_cocktail.ratings_count - 1
+            new_ratings_sum = @top_cocktail.ratings_sum - rating
+            new_average = new_ratings_sum / new_ratings_count
+            @top_cocktail.update(average_rating: new_average, ratings_sum: new_ratings_sum, ratings_count: new_ratings_count)
+        end 
     end 
 
     

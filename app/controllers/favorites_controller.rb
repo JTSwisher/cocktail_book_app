@@ -38,6 +38,8 @@ class FavoritesController < ApplicationController
     end 
 
     def destroy
+        
+        update_top_cocktail(@favorite.cocktail.id, @favorite.rating)
         @favorite.destroy
         redirect_to user_favorites_path(current_user)
     end 
@@ -50,12 +52,4 @@ private
 
 end
 
-
-#top_cocktails table
-#cocktail_id
-#average_rating 
-
-#when a favorite object is being created check to see if a top_rated object exist with the cocktail_id
-#of the newly created object. If it does update the average rating for that cocktail via a TopRated class method
-#then update the average_rating value TopRated.update(average_rating).where (id: cocktail_id)
 
