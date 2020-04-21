@@ -1,6 +1,5 @@
 class Cocktail < ActiveRecord::Base
     belongs_to :user
-    has_many :top_cocktails
     has_many :cocktail_ingredients
     has_many :ingredients, through: :cocktail_ingredients
     validates_associated :cocktail_ingredients
@@ -10,7 +9,7 @@ class Cocktail < ActiveRecord::Base
     validates :cocktail_ingredients, presence: true
 
     accepts_nested_attributes_for :cocktail_ingredients, limit: 5,  :reject_if => proc { |attrs| attrs[:quantity].blank? || attrs[:ingredient_attributes][:name].blank?}
-    
+    scope :highest_rated, -> {where ("average_rating >= 7.0")}
 
 
     def self.find_cocktails_by_ingredient(query)
@@ -41,15 +40,27 @@ class Cocktail < ActiveRecord::Base
         end 
     end 
 
-    def self.user_cocktails_index(user)
+    def self.user_cocktails_index(user) #queries all cocktails fora  specific user for index
         @cocktails = user.cocktails.all
     end 
 
-    def self.query_cocktails_index(query)
+    def self.query_cocktails_index(query) #queries all cocktails for a  specific usearch term
         if Ingredient.valid_ingredient(query)
             @cocktails = Cocktail.find_cocktails_by_ingredient(query)
         end 
     end 
 
+#########
+
+    def self.update_average_rating(id, rating)
+		@cocktail = Cocktail.find(id)
+        ratings_count = @cocktail.ratings_count + 1
+        ratings_sum = @cocktail.ratings_sum + rating
+        new_rating = ratings_sum.to_f / ratings_count.to_f
+        @cocktail.update(average_rating: new_rating, ratings_count: ratings_count, ratings_sum: ratings_sum)
+	end 
+
+
+###########
 
 end 

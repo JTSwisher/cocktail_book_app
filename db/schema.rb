@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_225149) do
+ActiveRecord::Schema.define(version: 2020_04_21_173534) do
 
   create_table "cocktail_ingredients", force: :cascade do |t|
     t.integer "cocktail_id"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 2020_04_19_225149) do
     t.string "name"
     t.string "instructions"
     t.integer "user_id"
+    t.float "average_rating", default: 0.0
+    t.integer "ratings_sum", default: 0
+    t.integer "ratings_count", default: 0
   end
 
   create_table "favorites", force: :cascade do |t|

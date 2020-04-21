@@ -1,6 +1,7 @@
-<h1>My Favorites</h1>
-<%= link_to "All Cocktails", cocktails_path, class: "btn btn-primary" %>
-<%= link_to "Create New Cocktail",new_user_cocktail_path(current_user), class: "btn btn-primary"%>
+
+  <h1>My Favorites</h1>
+  <%= link_to "All Cocktails", cocktails_path, class: "btn btn-primary" %>
+  <%= link_to "Create New Cocktail",new_user_cocktail_path(current_user), class: "btn btn-primary"%>
 
 
 
@@ -14,6 +15,7 @@
   </thead>
   <tbody>
     <% @favorites.each do |c| %>
+    <%binding.pry%>
         <tr>
             <td><%= link_to highest_rated_cocktails(c).name, user_favorite_path(current_user.id, c.id)%></td>
            

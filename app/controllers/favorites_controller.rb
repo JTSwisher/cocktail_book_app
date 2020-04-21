@@ -16,7 +16,7 @@ class FavoritesController < ApplicationController
        @favorite_cocktail = @user.favorites.build(favorite_params)
        if @favorite_cocktail.save
  
-            TopCocktail.create_update_top_cocktail(@favorite_cocktail.cocktail_id, @favorite_cocktail.rating)
+            Cocktail.update_average_rating(@favorite_cocktail.cocktail_id, @favorite_cocktail.rating)
             redirect_to user_favorites_path(@user)
        else 
             redirect_to user_favorites_path(@user)
