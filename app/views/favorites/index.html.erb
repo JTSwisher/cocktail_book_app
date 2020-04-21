@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <% @favorites.each do |c| %>
-    <%binding.pry%>
+ 
         <tr>
             <td><%= link_to highest_rated_cocktails(c).name, user_favorite_path(current_user.id, c.id)%></td>
            

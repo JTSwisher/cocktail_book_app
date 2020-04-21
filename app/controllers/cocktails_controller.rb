@@ -58,7 +58,6 @@ class CocktailsController < ApplicationController
 
     def destroy
         Favorite.destroy_favorites(@cocktail.id)
-        TopCocktail.destroy_top_cocktail(@cocktail.id)
         @cocktail.destroy
         redirect_to user_cocktails_path(current_user)
     end 
