@@ -16,9 +16,8 @@ class CocktailsController < ApplicationController
                 flash[:alert].clear unless flash[:alert] == nil
                 @cocktails = Cocktail.query_cocktails_index(params[:query])
             end
-
         else 
-             @cocktails = Cocktail.all 
+            @cocktails = Cocktail.all 
         end 
     end 
 
@@ -34,7 +33,6 @@ class CocktailsController < ApplicationController
         if @cocktail.save 
             redirect_to user_cocktail_path(@user, @cocktail)
         else 
-            count = @cocktail.cocktail_ingredients.size
             5.times { @cocktail.cocktail_ingredients.build.build_ingredient}
             render 'new'
         end 
@@ -45,6 +43,7 @@ class CocktailsController < ApplicationController
     end 
 
     def edit
+        #instantiate cocktail_ingredient & ingredient objects based on available ingredient spaces max 5
         count = @cocktail.cocktail_ingredients.size
         if count < 5
             available_ingredients = 5 - count
@@ -55,12 +54,11 @@ class CocktailsController < ApplicationController
     def update
         @cocktail.update(cocktail_params)
         redirect_to user_cocktail_path(@cocktail.user.id, @cocktail) 
-        #creates all new objects for ingredients after updating not the newly added ingredients or newl changed
     end 
 
     def destroy
-        destroy_favorites(@cocktail.id)
-        destroy_top_cocktail(@cocktail.id)
+        Favorite.destroy_favorites(@cocktail.id)
+        TopCocktail.destroy_top_cocktail(@cocktail.id)
         @cocktail.destroy
         redirect_to user_cocktails_path(current_user)
     end 

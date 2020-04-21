@@ -3,7 +3,7 @@ class TopCocktailsController < ApplicationController
     def index
         if !TopCocktail.highest_rated
         else
-            @favorites = TopCocktail.highest_rated
+            @top_cocktails = TopCocktail.highest_rated
         end 
     end
 
