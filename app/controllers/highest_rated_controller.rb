@@ -7,6 +7,4 @@ class HighestRatedController < ApplicationController
         end 
     end 
 
-
-
 end 

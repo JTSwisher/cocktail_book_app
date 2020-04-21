@@ -51,7 +51,7 @@ class Cocktail < ActiveRecord::Base
     end 
 
 
-    def self.update_average_rating(id, rating) #Updating average_rating, ratings_count and ratings_sum when new favorite object is created for the cocktail. 
+    def self.new_favorite_update_average_rating(id, rating) #Updating average_rating, ratings_count and ratings_sum when new favorite object is created for the cocktail. 
 		@cocktail = Cocktail.find(id)
         ratings_count = @cocktail.ratings_count + 1
         ratings_sum = @cocktail.ratings_sum + rating
@@ -60,7 +60,7 @@ class Cocktail < ActiveRecord::Base
     end 
     
 
-    def self.favorite_delete_update_average_rating(id, rating)
+    def self.favorite_delete_update_average_rating(id, rating) #Updating average_rating for cocktail at the time of associated favorite object being deleted. 
         @cocktail = Cocktail.find(id)
         new_ratings_count = @cocktail.ratings_count - 1
         if new_ratings_count == 0 
@@ -74,6 +74,20 @@ class Cocktail < ActiveRecord::Base
         end 
     end 
 
+    def self.update_rating_reduce(id, rating)
+        @cocktail = Cocktail.find(id)
+        new_ratings_sum = @cocktail.ratings_sum - rating
+        new_average = new_ratings_sum / @cocktail.ratings_count
+        @cocktail.update(average_rating: new_average, ratings_sum: new_ratings_sum)
+    end 
 
+    def self.update_rating_increase(id, rating)
+      
+        @cocktail = Cocktail.find(id)
+        new_ratings_sum = @cocktail.ratings_sum + rating
+        new_average = new_ratings_sum / @cocktail.ratings_count
+        @cocktail.update(average_rating: new_average, ratings_sum: new_ratings_sum)
+    end 
+    
     
 end 
