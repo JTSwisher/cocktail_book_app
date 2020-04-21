@@ -38,13 +38,6 @@ ActiveRecord::Schema.define(version: 2020_04_21_173534) do
     t.string "name"
   end
 
-  create_table "top_cocktails", force: :cascade do |t|
-    t.integer "cocktail_id"
-    t.integer "average_rating"
-    t.integer "ratings_sum"
-    t.integer "ratings_count", default: 0
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "name"
