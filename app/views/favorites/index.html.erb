@@ -17,8 +17,10 @@
     <% @favorites.each do |c| %>
  
         <tr>
+            <!- use favorites helper to locate cocktail object associated with favorite object, display name ->
             <td><%= link_to highest_rated_cocktails(c).name, user_favorite_path(current_user.id, c.id)%></td>
-           
+          
+           <!- use favorites helper to lcoate cocktail object associated with favorite object, display rating ->
             <%= favorites_rating(c) %>
 
             <td><%= highest_rated_cocktails(c).user.name %></td>

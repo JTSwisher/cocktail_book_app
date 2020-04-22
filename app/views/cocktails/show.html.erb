@@ -6,8 +6,10 @@
         <hr>
         <a class="btn btn-primary" <%= link_to "Edit Cocktail", edit_user_cocktail_path(current_user.id, @cocktail.id)%> </a>
         <a class="btn btn-primary" <%= link_to "Delete Cocktail", user_cocktail_path(current_user.id, @cocktail), :method => :delete%> </a>
+
     <% elsif user_favorite(current_user, @cocktail) %>
         <h5>Saved to your <%=link_to "favorites.", user_favorites_path(current_user.id)%>
+        
     <%else%>
         <h5>Save to Favorites:</h5>
         <hr>

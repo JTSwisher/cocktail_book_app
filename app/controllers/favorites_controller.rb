@@ -9,7 +9,6 @@ class FavoritesController < ApplicationController
     end
 
     def show 
-        
     end 
 
     def create
@@ -24,7 +23,6 @@ class FavoritesController < ApplicationController
     end 
 
     def edit
-        
     end 
 
     def update

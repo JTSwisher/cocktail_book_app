@@ -11,6 +11,15 @@ class Cocktail < ActiveRecord::Base
     accepts_nested_attributes_for :cocktail_ingredients, limit: 5,  :reject_if => proc { |attrs| attrs[:quantity].blank? || attrs[:ingredient_attributes][:name].blank?}
     scope :highest_rated, -> {where ("average_rating >= 7.0")}
 
+    def self.user_cocktails_index(user) #queries all cocktails for a  specific user for index
+        @cocktails = user.cocktails.all
+    end 
+
+    def self.query_cocktails_index(query) #queries all cocktails for a  specific user sarch term
+        if Ingredient.valid_ingredient(query)
+            @cocktails = Cocktail.find_cocktails_by_ingredient(query)
+        end 
+    end 
 
     def self.find_cocktails_by_ingredient(query)
         ingredients = query.split(/\W+/)
@@ -40,16 +49,6 @@ class Cocktail < ActiveRecord::Base
         end 
     end 
 
-    def self.user_cocktails_index(user) #queries all cocktails fora  specific user for index
-        @cocktails = user.cocktails.all
-    end 
-
-    def self.query_cocktails_index(query) #queries all cocktails for a  specific usearch term
-        if Ingredient.valid_ingredient(query)
-            @cocktails = Cocktail.find_cocktails_by_ingredient(query)
-        end 
-    end 
-
 
     def self.new_favorite_update_average_rating(id, rating) #Updating average_rating, ratings_count and ratings_sum when new favorite object is created for the cocktail. 
 		@cocktail = Cocktail.find(id)
@@ -74,15 +73,14 @@ class Cocktail < ActiveRecord::Base
         end 
     end 
 
-    def self.update_rating_reduce(id, rating)
+    def self.update_rating_reduce(id, rating) #Updating average rating for cocktail at the time of associated favorite objects rating decreasing.
         @cocktail = Cocktail.find(id)
         new_ratings_sum = @cocktail.ratings_sum - rating
         new_average = new_ratings_sum / @cocktail.ratings_count
         @cocktail.update(average_rating: new_average, ratings_sum: new_ratings_sum)
     end 
 
-    def self.update_rating_increase(id, rating)
-      
+    def self.update_rating_increase(id, rating) #Updating average rating for cocktail at the time of associated favorite objects rating increasing.
         @cocktail = Cocktail.find(id)
         new_ratings_sum = @cocktail.ratings_sum + rating
         new_average = new_ratings_sum / @cocktail.ratings_count
