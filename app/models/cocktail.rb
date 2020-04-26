@@ -28,20 +28,20 @@ class Cocktail < ActiveRecord::Base
         
         ingredients.each do |i| #Iterate over each search term
             ingredient = Ingredient.where("name like ?", "%#{i.downcase}%") #locate similar ingredients from ingredient table
-            ingredient.each do |i| #Iterate over returned valid ingredients to locate associated cocktail_ingredient objects where ingredient id is present. 
-                ids = CocktailIngredient.all.where(ingredient_id: i.id)
-                ids.each do |i| 
-                    cocktail_ids << i.cocktail_id #shovel cocktail_id of favorite object into cocktail_ids array
+            
+            ingredient.each do |o| #Iterate over returned valid ingredients to locate associated cocktail_ingredient objects where ingredient id is present. 
+                ids = CocktailIngredient.all.where(ingredient_id: o.id)
+            
+                ids.each do |c| 
+                    cocktail_ids << c.cocktail_id #shovel cocktail_id of favorite object into cocktail_ids array
                 end 
             end 
         end 
 
         @cocktails = Cocktail.all.where(id: cocktail_ids) #locate all cocktails where cocktail_id is present
-
+        
         if !@cocktails.empty?
             @cocktails
-        else 
-            @cocktails = Cocktail.all
         end 
     end 
 

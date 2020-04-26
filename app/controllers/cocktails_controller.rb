@@ -14,7 +14,7 @@ class CocktailsController < ApplicationController
                 @cocktails = Cocktail.all
             else
                 flash[:alert].clear unless flash[:alert] == nil
-                @cocktails = Cocktail.query_cocktails_index(params[:query])
+                @cocktails
             end
         else 
             @cocktails = Cocktail.all 
