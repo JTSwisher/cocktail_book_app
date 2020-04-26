@@ -23,25 +23,20 @@ class Cocktail < ActiveRecord::Base
     end 
 
     def self.find_cocktails_by_ingredient(query)
-        ingredients = query.split(/\W+/)
+        ingredients = query.split(/\W+/) #Split query into individual search terms
         cocktail_ids = []
-        ingredient_ids = []
-
-        ingredients.each do |i|
-            ingredient = Ingredient.where("name like ?", "%#{i.downcase}%")
-            ingredient.each do |i|
+        
+        ingredients.each do |i| #Iterate over each search term
+            ingredient = Ingredient.where("name like ?", "%#{i.downcase}%") #locate similar ingredients from ingredient table
+            ingredient.each do |i| #Iterate over returned valid ingredients to locate associated cocktail_ingredient objects where ingredient id is present. 
                 ids = CocktailIngredient.all.where(ingredient_id: i.id)
-                ids.each do |i|
-                    ingredient_ids << i.cocktail_id
+                ids.each do |i| 
+                    cocktail_ids << i.cocktail_id #shovel cocktail_id of favorite object into cocktail_ids array
                 end 
             end 
         end 
 
-        ingredient_ids.each do |ci|
-            cocktail_ids << ci
-        end 
-
-        @cocktails = Cocktail.all.where(id: cocktail_ids)
+        @cocktails = Cocktail.all.where(id: cocktail_ids) #locate all cocktails where cocktail_id is present
 
         if !@cocktails.empty?
             @cocktails

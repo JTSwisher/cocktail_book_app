@@ -11,10 +11,9 @@ class FavoritesController < ApplicationController
     def show 
     end 
 
-    def create
+    def create #Use Cocktail class method to update rating of cocktail after associated favorite has been created
        @favorite_cocktail = @user.favorites.build(favorite_params)
        if @favorite_cocktail.save
- 
             Cocktail.new_favorite_update_average_rating(@favorite_cocktail.cocktail_id, @favorite_cocktail.rating)
             redirect_to user_favorites_path(@user)
        else 
@@ -25,13 +24,12 @@ class FavoritesController < ApplicationController
     def edit
     end 
 
-    def update
+    def update #Account for difference in rating update for favorite, utilize Cocktail class method accordingly to update cocktail rating overall.
         if @favorite.rating > favorite_params[:rating].to_i
             rating_difference = @favorite.rating - favorite_params[:rating].to_i
             @favorite.update(favorite_params)
             Cocktail.update_rating_reduce(@favorite.cocktail.id, rating_difference)
         else 
-            binding.pry
             rating_difference = favorite_params[:rating].to_i - @favorite.rating
             @favorite.update(favorite_params)
             Cocktail.update_rating_increase(@favorite.cocktail.id, rating_difference)
@@ -39,7 +37,7 @@ class FavoritesController < ApplicationController
         redirect_to user_favorite_path(@favorite.user, @favorite)
     end 
 
-    def destroy
+    def destroy # Use Cocktail class method to update cocktail rating after associated favorite has been deleted. 
         Cocktail.favorite_delete_update_average_rating(@favorite.cocktail.id, @favorite.rating)
         @favorite.destroy
         redirect_to user_favorites_path(current_user)
