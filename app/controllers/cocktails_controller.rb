@@ -56,7 +56,7 @@ class CocktailsController < ApplicationController
         redirect_to user_cocktail_path(@cocktail.user.id, @cocktail) 
     end 
 
-    def destroy
+    def destroy #when cocktail deleted destroy associated favorite objects
         Favorite.destroy_favorites(@cocktail.id)
         @cocktail.destroy
         redirect_to user_cocktails_path(current_user)

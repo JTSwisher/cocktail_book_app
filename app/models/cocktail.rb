@@ -10,7 +10,7 @@ class Cocktail < ActiveRecord::Base
 
     accepts_nested_attributes_for :cocktail_ingredients, limit: 5,  :reject_if => proc { |attrs| attrs[:quantity].blank? || attrs[:ingredient_attributes][:name].blank?}
     
-    scope :highest_rated, -> {where ("average_rating >= 7.0")}
+    scope :highest_rated, -> {where ("average_rating >= 7.0")} 
 
     def self.user_cocktails_index(user) #queries all cocktails for a  specific user for index
         @cocktails = user.cocktails.all
@@ -27,7 +27,7 @@ class Cocktail < ActiveRecord::Base
         cocktail_ids = []
         
         ingredients.each do |i| #Iterate over each search term
-            ingredient = Ingredient.where("name like ?", "%#{i.downcase}%") #locate similar ingredients from ingredient table
+            ingredient = Ingredient.find_ingredient(i.downcase)
             
             ingredient.each do |o| #Iterate over returned valid ingredients to locate associated cocktail_ingredient objects where ingredient id is present. 
                 ids = CocktailIngredient.all.where(ingredient_id: o.id)
