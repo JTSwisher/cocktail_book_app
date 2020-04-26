@@ -10,8 +10,9 @@
     <% if current_user%>
 
     <%else%>
-        <a class="btn btn-primary btn-xl js-scroll-trigger"  href="<%= new_user_path %>" >Sign Up</a> 
-        <a class="btn btn-primary btn-xl js-scroll-trigger"  href="<%= login_path %>" >Log In</a> 
+       
+        <%= link_to "Sign Up", new_user_path, class: "btn btn-primary btn-xl js-scroll-trigger"%>
+        <%= link_to "Log In", login_path, class: "btn btn-primary btn-xl js-scroll-trigger" %>
     <%end%>
   
     </div>

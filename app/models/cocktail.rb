@@ -23,12 +23,12 @@ class Cocktail < ActiveRecord::Base
     end 
 
     def self.find_cocktails_by_ingredient(query)
-        ingredients = query.split(/\W+/) #Split query into individual search terms
+        ingredients = query.scan(/\w+/) #omit spaces special characters, return whole strings only
+        binding.pry
         cocktail_ids = []
         
         ingredients.each do |i| #Iterate over each search term
             ingredient = Ingredient.find_ingredient(i.downcase)
-            
             ingredient.each do |o| #Iterate over returned valid ingredients to locate associated cocktail_ingredient objects where ingredient id is present. 
                 ids = CocktailIngredient.all.where(ingredient_id: o.id)
             

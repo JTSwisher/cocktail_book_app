@@ -8,7 +8,7 @@ class Ingredient < ActiveRecord::Base
     scope :find_ingredient, ->(query) { where("name LIKE  ?", "%#{query}%") }
 
     def self.valid_ingredient(ingredient) # used to validate user cocktail search query to check for valid ingredient. 
-        ingredients = ingredient.split(/\W+/) #split ingredient string on any non-word character/blank space
+        ingredients = ingredient.scan(/\w+/) #omit spaces special characters, return whole strings only
         valid_ingredient = []
 
         ingredients.each do |i| # iterate through each word in newly created array 
