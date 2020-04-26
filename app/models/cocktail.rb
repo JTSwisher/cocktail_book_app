@@ -9,6 +9,7 @@ class Cocktail < ActiveRecord::Base
     validates :cocktail_ingredients, presence: true
 
     accepts_nested_attributes_for :cocktail_ingredients, limit: 5,  :reject_if => proc { |attrs| attrs[:quantity].blank? || attrs[:ingredient_attributes][:name].blank?}
+    
     scope :highest_rated, -> {where ("average_rating >= 7.0")}
 
     def self.user_cocktails_index(user) #queries all cocktails for a  specific user for index
