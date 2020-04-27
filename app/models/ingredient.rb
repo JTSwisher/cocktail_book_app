@@ -11,7 +11,7 @@ class Ingredient < ActiveRecord::Base
         ingredients = ingredient.scan(/\w+/) #omit spaces special characters, return whole strings only
         valid_ingredient = []
 
-        ingredients.each do |i| # iterate through each word in newly created array 
+        ingredients.each do |i| # iterate through each word passed in via query
             ingredient = Ingredient.find_ingredient(i.downcase)
             #contains word or partial of it.
             

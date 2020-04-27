@@ -6,22 +6,20 @@
     </ul>
 <%end%>
 
-
 <%= f.text_field :name, label: "Cocktail Name"%>
 <%= f.text_field :instructions, label: "Mixing Directions"%>
 
 <h3> Ingredients:</h3>
 
-    
 <%= f.fields_for :cocktail_ingredients do |ci|%>
     <div class="row">
-            <div class="col">
-                <%= ci.text_field :quantity%>
+        <div class="col">
+            <%= ci.text_field :quantity%>
         </div> 
-            <%= ci.fields_for :ingredient do |i|%>
-                <div class="col">
-                    <%= i.text_field :name %>
-                </div>    
-            <%end%>
+        <%= ci.fields_for :ingredient do |i|%>
+            <div class="col">
+                <%= i.text_field :name %>
+            </div>    
+        <%end%>
     </div>    
 <%end%>

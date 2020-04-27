@@ -7,10 +7,7 @@
     <h2 class="mb-1">Cocktail Book</h2><br>
     <h5 class="mb-5">Find your new favorite drink recipe. Dont forget to add a recipe for the community!</h5>
 
-    <% if current_user%>
-
-    <%else%>
-       
+    <% if !current_user%>    
         <%= link_to "Sign Up", new_user_path, class: "btn btn-primary btn-xl js-scroll-trigger"%>
         <%= link_to "Log In", login_path, class: "btn btn-primary btn-xl js-scroll-trigger" %>
     <%end%>

@@ -1,9 +1,6 @@
-
-  <h1>My Favorites</h1>
-  <%= link_to "All Cocktails", cocktails_path, class: "btn btn-primary" %>
-  <%= link_to "Create New Cocktail",new_user_cocktail_path(current_user), class: "btn btn-primary"%>
-
-
+<h1>My Favorites</h1>
+<%= link_to "All Cocktails", cocktails_path, class: "btn btn-primary" %>
+<%= link_to "Create New Cocktail",new_user_cocktail_path(current_user), class: "btn btn-primary"%>
 
 <table class="table">
   <thead>
@@ -20,7 +17,7 @@
             <!- use favorites helper to locate cocktail object associated with favorite object, display name ->
             <td><%= link_to highest_rated_cocktails(c).name, user_favorite_path(current_user.id, c.id)%></td>
           
-           <!- use favorites helper to lcoate cocktail object associated with favorite object, display rating ->
+           <!- use favorites helper to locate cocktail object associated with favorite object, display rating ->
             <%= favorites_rating(c) %>
 
             <td><%= highest_rated_cocktails(c).user.name %></td>

@@ -1,12 +1,13 @@
-
 <div class="container">
     <div class="form">
         <h3>Sign Up:</h3>
         <hr><br>
         <%= bootstrap_form_for @user do |f|%>
             <ul>
-                <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
+                <% if @user.errors.any? %>
+                    <% @user.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
                 <% end %>
             </ul>
             <%= f.text_field :email%> <br>
@@ -14,7 +15,7 @@
             <%=f.password_field :password%><br>
             <%=f.password_field :password_confirmation%><br>
             <%=f.submit "Create User", class: "btn btn-primary"%>
-            <%= link_to "Cancel", root_path, class: "btn btn-primary"%>
+            <%= link_to "Cancel", root_path, class: "btn btn-danger"%>
             <%=%>
         <%end%><br>
 
