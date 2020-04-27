@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :new, :create]
   
   get 'cocktails/highest_rated', to: 'highest_rated#index', as: 'favorites'
-  resources :cocktails, only: [:show, :new, :create, :index]
-  post 'cocktails/query', to: 'cocktails#index', as: 'search_cocktails'
+  get 'cocktails/query', to: 'cocktails#index', as: 'search_cocktails'
+  resources :cocktails, only: [:show, :new, :create, :index] do 
+    resources :favorites, only: [:index]
+  end 
+  
  
   get '/login', to: 'sessions#new'
   post '/sessions', to: 'sessions#create'

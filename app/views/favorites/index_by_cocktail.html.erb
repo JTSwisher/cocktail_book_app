@@ -1,0 +1,20 @@
+<h1>Reviews for <%= link_to @cocktail.name, cocktail_path(@cocktail)%>:</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Rating</th>
+      <th scope="col">Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @favorites.each do |f|%>
+ 
+        <tr>
+            <td><%= f.rating%></td>
+            <td><%= f.comments %></td>
+        </tr>
+    <%end%>
+  </tbody>
+  
+</table>

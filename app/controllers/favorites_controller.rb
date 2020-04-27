@@ -5,7 +5,13 @@ class FavoritesController < ApplicationController
     before_action :current_favorite_object, only: [ :show, :edit, :update, :destroy ]
 
     def index
-        @favorites = current_user.favorites.all 
+        if params[:user_id]
+            @favorites = current_user.favorites.all
+        else 
+            @cocktail = Cocktail.find(params[:cocktail_id])
+            @favorites = @cocktail.favorites
+            render 'index_by_cocktail'
+        end 
     end
 
     def show 
@@ -14,6 +20,7 @@ class FavoritesController < ApplicationController
     def create #Use Cocktail class method to update rating of cocktail after associated favorite has been created
        @favorite_cocktail = @user.favorites.build(favorite_params)
        if @favorite_cocktail.save
+        binding.pry
             Cocktail.new_favorite_update_average_rating(@favorite_cocktail.cocktail_id, @favorite_cocktail.rating)
             redirect_to user_favorites_path(@user)
        else 

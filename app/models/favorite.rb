@@ -3,6 +3,8 @@ class Favorite < ActiveRecord::Base
     belongs_to :user
     validates :rating, presence: true
 
+    
+
     def self.destroy_favorites(cocktail_id)
         # Find all favorites with cocktail_id of associated coktail that was deleted and delete those favorite objects upon
         #cocktail deletion

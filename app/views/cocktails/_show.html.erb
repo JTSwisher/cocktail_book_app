@@ -3,6 +3,7 @@
     <h4>Created By:</h4> <p><%= cocktail_owner(@cocktail) %></p>
     <%if @cocktail.ratings_count > 0%>
        <h4> Rated:</h4> <p><%= @cocktail.average_rating %> / 10 , by <%= @cocktail.ratings_count%> users.</p>
+       <%= link_to "Reviews", cocktail_favorites_path(@cocktail) %>
     <%end%>
     <h4>Directions:</h4> <p><%= @cocktail.instructions %></p>
 </div>

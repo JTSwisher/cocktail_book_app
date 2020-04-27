@@ -1,5 +1,6 @@
 class Cocktail < ActiveRecord::Base
     belongs_to :user
+    has_many :favorites
     has_many :cocktail_ingredients
     has_many :ingredients, through: :cocktail_ingredients
     validates_associated :cocktail_ingredients
@@ -8,7 +9,7 @@ class Cocktail < ActiveRecord::Base
     validates :instructions, presence: true 
     validates :cocktail_ingredients, presence: true
 
-    accepts_nested_attributes_for :cocktail_ingredients, limit: 5,  :reject_if => proc { |attrs| attrs[:quantity].blank? || attrs[:ingredient_attributes][:name].blank?}
+    accepts_nested_attributes_for :cocktail_ingredients, limit: 5,  :reject_if => proc { |attrs| attrs[:quantity].blank? || attrs[:ingredient_attributes][:name].blank?} #ignore any new record hashes if they fail to pass
     
     scope :highest_rated, -> {where ("average_rating >= 7.0")} 
 
