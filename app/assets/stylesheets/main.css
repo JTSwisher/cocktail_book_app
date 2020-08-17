@@ -40,7 +40,7 @@ html, body {
     font-family: 'Montserrat', sans-serif;
     padding: 0.5% 10% 1% 10%;
     position: relative;
-    margin-top: 75px;
+    margin-top: 55px;
     margin-bottom: 50px;
     background-color: white;
     border-radius: 20px;
@@ -50,8 +50,8 @@ html, body {
   }
 
   .cocktail-image {
-    height: 400px;
-    width: 400px;
+    height: 500px;
+    width: 500px;
   }
 
 

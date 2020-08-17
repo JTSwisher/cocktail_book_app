@@ -1,4 +1,3 @@
-# README
 # Cocktail Keeper
 
 Cocktail Keeper allows users to create cocktail recipes and view recipes created by the community. Users can save their favorite recipes from the community to their accounts and provide an associated rating. 
