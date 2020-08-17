@@ -4,7 +4,7 @@ Cocktail Keeper allows users to create cocktail recipes and view recipes created
 
 ## Demo
 
-[CocktailBook: A Ruby on Rails App](https://youtu.be/r5XVMWq2WnA)
+[CocktailBook: A Ruby on Rails App](https://youtu.be/_Lku7V-rI9U)
 
 ## Getting Started
 
