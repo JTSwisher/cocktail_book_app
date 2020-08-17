@@ -20,7 +20,6 @@ class FavoritesController < ApplicationController
     def create #Use Cocktail class method to update rating of cocktail after associated favorite has been created
        @favorite_cocktail = @user.favorites.build(favorite_params)
        if @favorite_cocktail.save
-        binding.pry
             Cocktail.new_favorite_update_average_rating(@favorite_cocktail.cocktail_id, @favorite_cocktail.rating)
             redirect_to user_favorites_path(@user)
        else 
