@@ -49,6 +49,11 @@ html, body {
     right: 0px;
   }
 
+  .cocktail-image {
+    height: 400px;
+    width: 400px;
+  }
+
 
   .footer {
   font-family: 'Montserrat', sans-serif;
@@ -73,8 +78,6 @@ html, body {
   .logo {
     margin: 10px;
   }
-
-   
   
   #user-greeting {
     padding-top: 0.5%;

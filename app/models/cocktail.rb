@@ -3,7 +3,7 @@ class Cocktail < ActiveRecord::Base
     has_many :favorites
     has_many :cocktail_ingredients
     has_many :ingredients, through: :cocktail_ingredients
-    
+    has_one_attached :image
     validates_associated :cocktail_ingredients
 
     validates :name, presence: true

@@ -1,5 +1,8 @@
 <div class="container">
     <h2><u><%= @cocktail.name %></u></h2><br>
+    <% if @cocktail.image.attached? %>
+        <img class ="cocktail-image" src="<%=(url_for(@cocktail.image))%>" />
+    <%end%>
     <h4>Created By:</h4> <p><%= cocktail_owner(@cocktail) %></p>
     <%if @cocktail.ratings_count > 0%>
        <h4> Rated:</h4> <p><%= @cocktail.average_rating %> / 10 , by <%= @cocktail.ratings_count%> users.</p>
